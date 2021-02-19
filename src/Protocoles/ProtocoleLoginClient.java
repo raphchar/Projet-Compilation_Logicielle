@@ -21,7 +21,8 @@ public class ProtocoleLoginClient {
                 String chaines[] = inputReq.split(" ");
 
                 if (chaines[0].contentEquals("LOGIN")) {
-                    // Todo : coder le traitement d'un login
+                    // Todo : coder le traitement d'un login : lire fichier contenant liste login (cf. DatabaseID.txt),
+                    //  comparer et return True si ok
                 }
                 os.println(valeurExpediee);
             }
