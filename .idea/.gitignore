@@ -1,6 +1,7 @@
 # Default ignored files
 /shelf/
 /libraries/
+/lib.xml
 /workspace.xml
 # Datasource local storage ignored files
 /dataSources/
