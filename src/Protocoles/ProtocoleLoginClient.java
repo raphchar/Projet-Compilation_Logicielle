@@ -24,6 +24,10 @@ public class ProtocoleLoginClient {
                     // Todo : coder le traitement d'un login : lire fichier contenant liste login (cf. DatabaseID.txt),
                     //  comparer et return True si ok
                 }
+
+                else if (chaines[0].contentEquals("NEW ACCOUNT")) {
+                    // TODO : coder le traitement d'un nouvel account : écrire dans le fichier des login, si tout se passe bien renvoyer TRUE
+                }
                 os.println(valeurExpediee);
             }
         } catch ( Exception e) {
