@@ -6,28 +6,34 @@ import java.io.*;
 
 public class ProtocoleLoginClient {
 
+    private Tools Ids = new Tools();
+    private String name = "";
 
     public void execute( IContext c , InputStream unInput , OutputStream unOutput ) {
 
         String inputReq;
-        BufferedReader is = new BufferedReader(new InputStreamReader(
-                unInput));
+        BufferedReader is = new BufferedReader(new InputStreamReader(unInput));
         PrintStream os = new PrintStream(unOutput);
+
         try {
             String valeurExpediee = "";
 
             if ((inputReq = is.readLine()) != null) {
                 System.out.println(" Ordre Recu " + inputReq);
-                String chaines[] = inputReq.split(" ");
+                String nom = inputReq;
+                String mdp = is.readLine();
+                System.out.println("connection token : " + nom + " " + mdp);
 
-                if (chaines[0].contentEquals("LOGIN")) {
-                    // Todo : coder le traitement d'un login : lire fichier contenant liste login (cf. DatabaseID.txt),
-                    //  comparer et return True si ok
+                if (Ids.checkMDP(nom, mdp)) {
+                    valeurExpediee = "true";
+                    this.name = nom;
+                    System.out.println(valeurExpediee);
+                }
+                else {
+                    valeurExpediee = "false";
+                    System.out.println(valeurExpediee);
                 }
 
-                else if (chaines[0].contentEquals("NEW ACCOUNT")) {
-                    // TODO : coder le traitement d'un nouvel account : écrire dans le fichier des login, si tout se passe bien renvoyer TRUE
-                }
                 os.println(valeurExpediee);
             }
         } catch ( Exception e) {
