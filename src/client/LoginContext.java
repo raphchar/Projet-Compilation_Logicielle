@@ -1,7 +1,5 @@
 package client;
 
-import servPattern.IContext;
-
 public class LoginContext implements IContext {
     private String id = "";
     private String pw = "";
