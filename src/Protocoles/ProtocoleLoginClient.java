@@ -10,7 +10,6 @@ public class ProtocoleLoginClient {
     private String name = "";
 
     public void execute( IContext c , InputStream unInput , OutputStream unOutput ) {
-
         String inputReq;
         BufferedReader is = new BufferedReader(new InputStreamReader(unInput));
         PrintStream os = new PrintStream(unOutput);
