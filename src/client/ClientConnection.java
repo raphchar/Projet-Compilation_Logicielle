@@ -1,4 +1,4 @@
-package Protocoles;
+package client;
 
 import java.io.*;
 import java.net.*;

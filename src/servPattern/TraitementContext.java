@@ -5,24 +5,24 @@ import java.net.Socket;
 /**
  * Processus de Transaction (anciennement ServeurSpecifique)
  */
-class ProcessusTransaction extends Thread {
+class TraitementContext extends Thread {
 
 	private Socket clientSocket;
 	private ServeurTCP monServeurTCP;
 
-	public  ProcessusTransaction(Socket uneSocket, ServeurTCP unServeur) {        
+	public TraitementContext(Socket uneSocket, ServeurTCP unServeur) {
 		super("ServeurThread");
 		clientSocket = uneSocket;
-		System.out.println("[ProcessusTransaction] CLIENT : " + clientSocket);
+		System.out.println("[Traitement Context] CLIENT : " + clientSocket);
 		monServeurTCP = unServeur;
 	} 
 
 	public void run() {        
 		try {
 			monServeurTCP.getProtocole().execute( monServeurTCP.getContexte() , clientSocket.getInputStream() , clientSocket.getOutputStream() );
-			System.out.println("Processus transaction fait");
+			System.out.println("Traitement Context fait");
 		} catch (IOException e) {
-			System.err.println("[ProcessusTransaction] Exception : " + e );
+			System.err.println("[Traitement Context] Exception : " + e );
 			e.printStackTrace();
 		}
 	} 

@@ -1,6 +1,6 @@
 package GUI;
 
-import Protocoles.ClientConnection;
+import client.ClientConnection;
 import client.ClientTCP;
 import javafx.application.Application;
 import javafx.geometry.Insets;

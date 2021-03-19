@@ -29,14 +29,6 @@ public class ServeurTCP extends Thread{
 		protocole = p;
 	}
 
-	public void setBanqueCentrale(IContext uneBanque) {        
-		contexte = uneBanque;
-	} 
-
-	public IContext getBanqueCentrale() {        
-		return contexte;
-	} 
-
 	public String toString() {        
 		return "[ServeurTCP] Port : " +  numeroPort + ", Contexte: " + contexte ;
 	} 
@@ -63,7 +55,7 @@ public class ServeurTCP extends Thread{
 				System.out.println("Accept failed: " + serverSocket.getLocalPort() + ", " + e);
 				System.exit(1);
 			}
-			ProcessusTransaction st = new ProcessusTransaction( clientSocket , this );
+			TraitementContext st = new TraitementContext( clientSocket , this );
 			st.start();
 		}
 		System.out.println("Deja " + nbConnexions + " clients. Maximum autorisé atteint");
