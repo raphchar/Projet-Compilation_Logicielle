@@ -14,11 +14,16 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class connectionGUI extends Application {
+import launchPattern.Serveur;
+
+public class connectionGUI extends Application implements IconnectionGUI{
     public VBox mainPane;
     public Stage primaryStage;
+    // Données pour la connection
+    public String unNomServeur = "localhost";
+    public int unNumero = 6666;
+    public Serveur monServeur;
 
-    @Override
     public void start(Stage primaryStage) throws Exception{
         try {
             this.primaryStage = primaryStage;
