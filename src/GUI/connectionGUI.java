@@ -36,6 +36,9 @@ public class connectionGUI extends Application implements IconnectionGUI{
             this.primaryStage.setResizable(true);
             this.primaryStage.show();
 
+            monServeur = new Serveur(unNomServeur, unNumero);
+            monServeur.connectionAuServeur();
+
             this.primaryStage.setOnCloseRequest(event -> {
                 System.exit(0);}
                 );
