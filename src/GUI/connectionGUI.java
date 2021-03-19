@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import launchPattern.Serveur;
+import Protocoles.ClientConnection;
 
 public class connectionGUI extends Application implements IconnectionGUI{
     public VBox mainPane;
@@ -74,6 +75,23 @@ public class connectionGUI extends Application implements IconnectionGUI{
         //Boutons
         Button bouttonConnection = new Button("Connection");
         bouttonConnection.setMinSize(150, 40);
+        bouttonConnection.setOnAction(actionevent -> {
+            //creating Login Protocole
+            String login = nomUtilisateurTextField.getText();
+            String pass = motDePasseTextField.getText();
+            ClientConnection protocoleLog = new ClientConnection(unNomServeur, unNumero, login, pass);
+
+            //Trying to connect
+            try {
+                monServeur.transmitioneOrdre("login");
+                String msgServeur = protocoleLog.transmisionConnection(monServeur.getSocOut(),monServeur.getSocIn());
+                if (msgServeur.equals("true")) {
+                    System.out.println("Connection du client réussi");
+                    primaryStage.close();
+                }
+            } catch (Exception e) {e.printStackTrace();}
+
+        });
 
         Button bouttonNouveauCompte = new Button("Nouveau compte");
         bouttonNouveauCompte.setMinSize(150, 40);
