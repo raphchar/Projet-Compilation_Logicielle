@@ -1,7 +1,7 @@
 package GUI;
 
-import client.ClientConnection;
 import client.ClientTCP;
+import client.LoginContext;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -73,20 +73,22 @@ public class connectionGUI extends Application implements IconnectionGUI{
         Button bouttonConnection = new Button("Connection");
         bouttonConnection.setMinSize(150, 40);
         bouttonConnection.setOnAction(actionevent -> {
-            //creating Login Protocole
+            //creating Login Context
             String login = nomUtilisateurTextField.getText();
             String pass = motDePasseTextField.getText();
-            ClientConnection protocoleLog = new ClientConnection(unNomServeur, unNumero, login, pass);
+            LoginContext myLoginContext = new LoginContext(login, pass);
 
             //Trying to connect
-            try {
-                monClientTCP.transmettreChaine("login");
-                String msgServeur = protocoleLog.transmisionConnection(monClientTCP.getSocOut(), monClientTCP.getSocIn());
-                if (msgServeur.equals("true")) {
-                    System.out.println("Connection du client réussi");
-                    primaryStage.close();
-                }
-            } catch (Exception e) {e.printStackTrace();}
+            monClientTCP.transmettreChaine(myLoginContext.toString());
+
+//            try {
+//                monClientTCP.transmettreChaine("login");
+//                String msgServeur = protocoleLog.transmisionConnection(monClientTCP.getSocOut(), monClientTCP.getSocIn());
+//                if (msgServeur.equals("true")) {
+//                    System.out.println("Connection du client réussi");
+//                    primaryStage.close();
+//                }
+//            } catch (Exception e) {e.printStackTrace();}
 
         });
 

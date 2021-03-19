@@ -28,22 +28,22 @@ public class ProtocoleLoginClient implements IProtocole {
         try {
             serverSocket = new ServerSocket(numeroPort);
         } catch (IOException e) {
-            System.out.println("Could not listen on port: " + numeroPort + ", " + e);
+            System.out.println("[ProtLoginCLient] Could not listen on port: " + numeroPort + ", " + e);
             System.exit(1);
         }
         int maxConnexions = 1;
         while (connexion < maxConnexions) {
             try {
-                System.out.println("Attente du serveur pour la communication d'un client " );
+                System.out.println("[ProtLoginCLient] Attente du serveur pour la communication d'un client " );
                 clientSocket = serverSocket.accept();
                 connexion ++;
-                System.out.println("Connexion faite" );
+                System.out.println("[ProtLoginCLient] Connexion faite" );
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         try {
-            System.out.println("Création socket ");
+            System.out.println("[ProtLoginCLient] Création socket ");
             socOut = new PrintStream(clientSocket.getOutputStream());
             socIn = new BufferedReader (
                     new InputStreamReader(clientSocket.getInputStream()));
@@ -51,14 +51,14 @@ public class ProtocoleLoginClient implements IProtocole {
             e.printStackTrace();
         }
         try {
-            System.out.println("Essaie nom + mdp" );
+            System.out.println("[ProtLoginCLient] Essaie nom + mdp" );
             String verifs;
             boolean verif;
             String nom;
             String mdp;
 
             nom = socIn.readLine();
-            System.out.println("nom + mdp reçu");
+            System.out.println("[ProtLoginCLient] nom + mdp reçu");
             mdp = socIn.readLine();
             System.out.println(nom + " " + mdp);
             verif = Ids.checkMDP(nom, mdp);
@@ -75,7 +75,7 @@ public class ProtocoleLoginClient implements IProtocole {
             serverSocket.close();
             connexion --;
         } catch (IOException e) {
-            System.out.println("Could not close");
+            System.out.println("[ProtLoginCLient] Could not close");
         }
     }
 }

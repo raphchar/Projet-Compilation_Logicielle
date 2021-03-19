@@ -20,7 +20,7 @@ class TraitementContext extends Thread {
 	public void run() {        
 		try {
 			monServeurTCP.getProtocole().execute( monServeurTCP.getContexte() , clientSocket.getInputStream() , clientSocket.getOutputStream() );
-			System.out.println("Traitement Context fait");
+			System.out.println("[Traitement Context] Traitement Context fait");
 		} catch (IOException e) {
 			System.err.println("[Traitement Context] Exception : " + e );
 			e.printStackTrace();

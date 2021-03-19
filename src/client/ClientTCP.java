@@ -36,43 +36,43 @@ public class ClientTCP {
 					new InputStreamReader (socketServeur.getInputStream()));
 			ok = true;
 		} catch (UnknownHostException e) {
-			System.err.println("Serveur inconnu : " + e);
+			System.err.println("[CLIENT] Serveur inconnu : " + e);
 
 		} catch (ConnectException e) {
-			System.err.println("Exception lors de la connexion:" + e);
+			System.err.println("[CLIENT] Exception lors de la connexion:" + e);
 			e.printStackTrace();
 
 		} catch (IOException e) {
-			System.err.println("Exception lors de l'echange de donnees:" + e);
+			System.err.println("[CLIENT] Exception lors de l'echange de donnees:" + e);
 		}
-		System.out.println("Connexion faite");
+		System.out.println("[CLIENT] Connexion faite");
 		return ok;
 	} 	
 	
 	public void deconnecterDuServeur() {        
 		try {
-			System.out.println("[ClientTCP] CLIENT : " + socketServeur);
+			System.out.println("[CLIENT] CLIENT : " + socketServeur);
 			socOut.close();
 			socIn.close();
 			socketServeur.close();
 		} catch (Exception e) {
-			System.err.println("Exception lors de la deconnexion :  " + e);
+			System.err.println("[CLIENT] Exception lors de la deconnexion :  " + e);
 		}
 	} 	
 	
 	public String transmettreChaine(String uneChaine) {        
 		String msgServeur = null;
 		try {
-			System.out.println( "Requete client : " + uneChaine );
+			System.out.println( "[CLIENT] Requete client : " + uneChaine );
 			socOut.println( uneChaine );
 			socOut.flush();
 			msgServeur = socIn.readLine();
-			System.out.println( "Reponse serveur : " + msgServeur );
+			System.out.println( "[CLIENT] Reponse serveur : " + msgServeur );
 
 		} catch (UnknownHostException e) {
-			System.err.println("Serveur inconnu : " + e);
+			System.err.println("[CLIENT] Serveur inconnu : " + e);
 		} catch (IOException e) {
-			System.err.println("Exception entree/sortie:  " + e);
+			System.err.println("[CLIENT] Exception entree/sortie:  " + e);
 			e.printStackTrace();
 		}
 		return msgServeur;
@@ -82,7 +82,7 @@ public class ClientTCP {
 	public String transmettreChaineConnexionPonctuelle(String uneChaine) {
 		String msgServeur = null;
 		String chaineRetour = "";
-		System.out.println("\nClient connexionTransmettreChaine " + uneChaine);
+		System.out.println("\n[CLIENT] Client connexionTransmettreChaine " + uneChaine);
 		if (connecterAuServeur() == true) {
 			try {
 				socOut.println(uneChaine);
@@ -92,15 +92,15 @@ public class ClientTCP {
 					chaineRetour += msgServeur + "\n";
 					msgServeur = socIn.readLine();
 				}
-				System.out.println("Client msgServeur " + chaineRetour);
+				System.out.println("[CLIENT] msgServeur " + chaineRetour);
 				deconnecterDuServeur();
 			} catch (Exception e) {
-				System.err.println("Exception lors de la connexion client:  " + e);
+				System.err.println("[CLIENT] Exception lors de la connexion client:  " + e);
 			}
 		}
 		else
 		{	
-			System.err.println("Connexion echouee");
+			System.err.println("[CLIENT] Connexion echouee");
 		}
 		return chaineRetour;
 	}
