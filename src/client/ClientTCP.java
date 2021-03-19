@@ -6,13 +6,18 @@ import java.net.*;
 public class ClientTCP {
 
 	private int numeroPort;
-
 	private String nomServeur;
-
 	private Socket socketServeur;
 
-	private PrintStream socOut;
+	public PrintStream getSocOut() {
+		return socOut;
+	}
 
+	public BufferedReader getSocIn() {
+		return socIn;
+	}
+
+	private PrintStream socOut;
 	private BufferedReader socIn;	
 	
 	/** Un client se connecte a un serveur identifie par un nom (unNomServeur), sur un port unNumero */
@@ -101,3 +106,14 @@ public class ClientTCP {
 	}
 	
 }
+
+//	public void transmitioneOrdre(String ordre){
+//		this.ordre = ordre;
+//		try{
+//			socOut.println(this.ordre);
+//			socOut.flush();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+//}

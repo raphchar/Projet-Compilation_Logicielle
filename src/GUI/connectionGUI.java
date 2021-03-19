@@ -1,21 +1,18 @@
 package GUI;
 
+import Protocoles.ClientConnection;
+import client.ClientTCP;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
-import javafx.geometry.Pos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import launchPattern.Serveur;
-import Protocoles.ClientConnection;
 
 public class connectionGUI extends Application implements IconnectionGUI{
     public VBox mainPane;
@@ -23,7 +20,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
     // Données pour la connection
     public String unNomServeur = "localhost";
     public int unNumero = 6666;
-    public Serveur monServeur;
+    public ClientTCP monClientTCP;
 
     public void start(Stage primaryStage) throws Exception{
         try {
@@ -37,8 +34,8 @@ public class connectionGUI extends Application implements IconnectionGUI{
             this.primaryStage.setResizable(true);
             this.primaryStage.show();
 
-            monServeur = new Serveur(unNomServeur, unNumero);
-            monServeur.connectionAuServeur();
+            monClientTCP = new ClientTCP(unNomServeur, unNumero);
+            monClientTCP.connecterAuServeur();
 
             this.primaryStage.setOnCloseRequest(event -> {
                 System.exit(0);}
@@ -83,8 +80,8 @@ public class connectionGUI extends Application implements IconnectionGUI{
 
             //Trying to connect
             try {
-                monServeur.transmitioneOrdre("login");
-                String msgServeur = protocoleLog.transmisionConnection(monServeur.getSocOut(),monServeur.getSocIn());
+                monClientTCP.transmettreChaine("login");
+                String msgServeur = protocoleLog.transmisionConnection(monClientTCP.getSocOut(), monClientTCP.getSocIn());
                 if (msgServeur.equals("true")) {
                     System.out.println("Connection du client réussi");
                     primaryStage.close();
