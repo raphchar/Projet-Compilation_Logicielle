@@ -20,10 +20,17 @@ public class Tools {
 
     private void closeLogFile() throws Exception{
         File file = new File(filename);
-        FileOutputStream f = new FileOutputStream(file);
-        ObjectOutputStream s = new ObjectOutputStream(f);
-        s.writeObject(this.dictLogin);
-        s.flush();
+
+        // clear the file
+        PrintWriter pw = new PrintWriter(file);
+        pw.close();
+
+        // copy whiole hashmap into the file
+        BufferedWriter f = new BufferedWriter(new FileWriter(file));
+        String line = null;
+        for (String key : this.dictLogin.keySet()) {
+            f.write(key + " " + this.dictLogin.get(key));
+        }
         f.close();
     }
 
@@ -33,13 +40,14 @@ public class Tools {
         }
         File file = new File(filename);
         BufferedReader f = new BufferedReader(new FileReader(file));
+
+        // copy the whole file into the hashmap
         String line = null;
         String[] datas;
         while ((line = f.readLine()) != null) {
             datas = line.split(" ");
             this.dictLogin.put(datas[0], datas[1]);
         }
-
         f.close();
     }
 

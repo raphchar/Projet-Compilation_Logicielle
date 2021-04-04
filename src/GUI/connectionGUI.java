@@ -81,15 +81,6 @@ public class connectionGUI extends Application implements IconnectionGUI{
             //Trying to connect
             monClientTCP.transmettreChaine(myLoginContext.toString());
 
-//            try {
-//                monClientTCP.transmettreChaine("login");
-//                String msgServeur = protocoleLog.transmisionConnection(monClientTCP.getSocOut(), monClientTCP.getSocIn());
-//                if (msgServeur.equals("true")) {
-//                    System.out.println("Connection du client réussi");
-//                    primaryStage.close();
-//                }
-//            } catch (Exception e) {e.printStackTrace();}
-
         });
 
         Button bouttonNouveauCompte = new Button("Nouveau compte");
