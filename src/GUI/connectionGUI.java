@@ -15,6 +15,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class connectionGUI extends Application implements IconnectionGUI{
     public VBox mainPane;
     public Stage primaryStage;
@@ -78,6 +80,11 @@ public class connectionGUI extends Application implements IconnectionGUI{
             String login = nomUtilisateurTextField.getText();
             String pass = motDePasseTextField.getText();
             LoginContext myLoginContext = new LoginContext(login, pass);
+            try {
+                monClientTCP.transmettreContext(myLoginContext);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         Button bouttonNouveauCompte = new Button("Nouveau compte");
@@ -153,6 +160,11 @@ public class connectionGUI extends Application implements IconnectionGUI{
             String pass = motDePasseTextField.getText();
             String verifPass = verificationMotdePasseTextField.getText();
             CreationCompteContext compteContext = new CreationCompteContext(login, pass, verifPass);
+            try {
+                monClientTCP.transmettreContext(compteContext);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         bouttonConnection.setOnAction(actionevent -> {

@@ -26,6 +26,7 @@ public class ProtocoleCreationCompte implements IProtocole {
                 outPut = "Mots de passe differents";
             }
             else {
+                tools.addUser(userID,userPW);
                 outPut = "Compte cree";
             }
         } catch (Exception e) {

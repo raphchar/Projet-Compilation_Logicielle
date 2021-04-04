@@ -1,6 +1,8 @@
 package servPattern;
+
 import Contexts.IContext;
 import Protocoles.IProtocole;
+import Protocoles.*;
 
 import java.io.*;
 import java.net.Socket;
@@ -38,16 +40,17 @@ class TraitementContext extends Thread {
 //			protocoleNumber = is.read();
 //			inputReq = is.readLine();
 			IContext context = (IContext) objectInputStream.readObject();
+			protocoleNumber = context.getProtocole();
+			System.out.println("[Traitement Conext] protocol Number : " + protocoleNumber);
 
-//			System.out.println("[Traitement Conext] protocol Number : " + protocoleNumber + " data : " + inputReq);
-//			// 76 = Login
-//			if (protocoleNumber == 76) {
-//				protocole = new ProtocoleLoginClient();
-//			}
-//			// 67 = Creation de compte
-//			else if (protocoleNumber == 67) {
-//				protocole = new ProtocoleCreationCompte();
-//			}
+			// 76 = Login
+			if (protocoleNumber == 76) {
+				protocole = new ProtocoleLoginClient();
+			}
+			// 67 = Creation de compte
+			else if (protocoleNumber == 67) {
+				protocole = new ProtocoleCreationCompte();
+			}
 
 			outPutRes = protocole.execute(context);
 			System.out.println("[Traitement Context] Traitement Context fait");

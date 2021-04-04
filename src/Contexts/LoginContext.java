@@ -1,8 +1,16 @@
 package Contexts;
 
-public class LoginContext implements IContext {
+import java.io.Serializable;
+
+public class LoginContext implements IContext, Serializable {
     private String id = "";
     private String pw = "";
+    public final int protocole = 76;
+
+    @Override
+    public int getProtocole() {
+        return this.protocole;
+    }
 
     public String getId() {
         return id;
@@ -29,5 +37,6 @@ public class LoginContext implements IContext {
     public String toString() {
         return "L{" + "id='" + id + '\'' + ", pw='" + pw + '\'' + '}';
     }
+
 }
 

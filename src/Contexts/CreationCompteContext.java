@@ -1,9 +1,17 @@
 package Contexts;
 
-public class CreationCompteContext implements IContext {
+import java.io.Serializable;
+
+public class CreationCompteContext implements IContext, Serializable {
     private String id = "";
     private String pw = "";
     private String verifPw = "";
+    public final int protocole = 67;
+
+    @Override
+    public int getProtocole() {
+        return protocole;
+    }
 
     public String getId() {
         return id;

@@ -87,8 +87,12 @@ public class ClientTCP {
 		OutputStream outputStream = socketServeur.getOutputStream();
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 
-		System.out.println("[CLIENT] Requete client : " + context);
+		System.out.println("[CLIENT] Requete context client : " + context);
 		objectOutputStream.writeObject(context);
+
+		String msgServeur = null;
+		msgServeur = socIn.readLine();
+		System.out.println("[CLIENT] Reponse serveur : " + msgServeur);
 	}
 }
 //	/* A utiliser pour ne pas deleguer la connexion aux interfaces GUI */
