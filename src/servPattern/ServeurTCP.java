@@ -1,6 +1,6 @@
-package SERVEUR.servPattern;
-import CLIENT.Contexts.IContext;
-import SERVEUR.Protocoles.IProtocole;
+package servPattern;
+import Contexts.IContext;
+import Protocoles.IProtocole;
 
 import java.io.*;
 import java.net.*;
@@ -58,7 +58,6 @@ public class ServeurTCP extends Thread{
 				System.out.println("[ServeurTCP] Accept failed: " + serverSocket.getLocalPort() + ", " + e);
 				System.exit(1);
 			}
-			// TODO : Mettre à jour le context
 			TraitementContext st = new TraitementContext( clientSocket , this );
 			st.start();
 		}

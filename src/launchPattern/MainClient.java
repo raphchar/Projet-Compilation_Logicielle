@@ -1,6 +1,6 @@
 package launchPattern;
 
-import CLIENT.connexion.ClientTCP;
+import connexion.ClientTCP;
 
 public class MainClient {
 

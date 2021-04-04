@@ -1,4 +1,4 @@
-package CLIENT.GUI;
+package GUI;
 
 public class Controller {
 }

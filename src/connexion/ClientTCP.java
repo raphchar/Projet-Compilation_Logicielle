@@ -1,6 +1,6 @@
-package CLIENT.connexion;
+package connexion;
 
-import CLIENT.Contexts.IContext;
+import Contexts.IContext;
 
 import java.io.*;
 import java.net.*;
@@ -43,7 +43,7 @@ public class ClientTCP {
 			System.err.println("[CLIENT] Serveur inconnu : " + e);
 
 		} catch (ConnectException e) {
-			System.err.println("[CLIENT] Exception lors de la CLIENT.connexion:" + e);
+			System.err.println("[CLIENT] Exception lors de la connexion:" + e);
 			e.printStackTrace();
 
 		} catch (IOException e) {
@@ -55,7 +55,7 @@ public class ClientTCP {
 
 	public void deconnecterDuServeur() {
 		try {
-			System.out.println("[CLIENT] CLIENT : " + socketServeur);
+			System.out.println("[CLIENT] Deconnexion : " + socketServeur);
 			socOut.close();
 			socIn.close();
 			socketServeur.close();
@@ -82,11 +82,16 @@ public class ClientTCP {
 		return msgServeur;
 	}
 
-	public void transmettreContext(IContext context) {
+	public void transmettreContext(IContext context) throws IOException {
 
+		OutputStream outputStream = socketServeur.getOutputStream();
+		ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+
+		System.out.println("[CLIENT] Requete client : " + context);
+		objectOutputStream.writeObject(context);
 	}
 }
-//	/* A utiliser pour ne pas deleguer la CLIENT.connexion aux interfaces CLIENT.GUI */
+//	/* A utiliser pour ne pas deleguer la connexion aux interfaces GUI */
 //	public String transmettreChaineConnexionPonctuelle(String uneChaine) {
 //		String msgServeur = null;
 //		String chaineRetour = "";
@@ -103,7 +108,7 @@ public class ClientTCP {
 //				System.out.println("[CLIENT] msgServeur " + chaineRetour);
 //				deconnecterDuServeur();
 //			} catch (Exception e) {
-//				System.err.println("[CLIENT] Exception lors de la CLIENT.connexion client:  " + e);
+//				System.err.println("[CLIENT] Exception lors de la connexion client:  " + e);
 //			}
 //		}
 //		else

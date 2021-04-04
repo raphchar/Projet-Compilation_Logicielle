@@ -1,4 +1,4 @@
-package SERVEUR.Outils;
+package Outils;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class Tools {
 
-    private String filename = "src/SERVEUR.servPattern/DatabaseID.txt";
+    private String filename = "src/servPattern/DatabaseID.txt";
 
     public void setFilename(String newFilname){
         this.filename = newFilname;

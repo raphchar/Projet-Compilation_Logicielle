@@ -1,4 +1,4 @@
-package CLIENT.Contexts;
+package Contexts;
 
 public interface IContext {
 

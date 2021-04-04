@@ -1,9 +1,8 @@
-package CLIENT.GUI;
+package GUI;
 
-import SERVEUR.Outils.Tools;
-import CLIENT.connexion.ClientTCP;
-import CLIENT.Contexts.CreationCompteContext;
-import CLIENT.Contexts.LoginContext;
+import Contexts.CreationCompteContext;
+import Contexts.LoginContext;
+import connexion.ClientTCP;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -79,10 +78,6 @@ public class connectionGUI extends Application implements IconnectionGUI{
             String login = nomUtilisateurTextField.getText();
             String pass = motDePasseTextField.getText();
             LoginContext myLoginContext = new LoginContext(login, pass);
-
-            //Trying to connect
-            monClientTCP.transmettreChaine(myLoginContext.toString());
-
         });
 
         Button bouttonNouveauCompte = new Button("Nouveau compte");
@@ -157,27 +152,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
             String login = nomUtilisateurTextField.getText();
             String pass = motDePasseTextField.getText();
             String verifPass = verificationMotdePasseTextField.getText();
-
-            int state = 0;
-            if (!pass.equals(verifPass)) {state=1;}
-            try {
-                Tools tools = new Tools();
-                if (tools.isUser(login)){state=2;}
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            if (state==0) {
-                CreationCompteContext compteContext = new CreationCompteContext(login, pass);
-                monClientTCP.transmettreChaine(compteContext.toString());
-            }
-            else {
-                try {
-                    System.out.println("State : " + state);
-                    CreationCompte();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+            CreationCompteContext compteContext = new CreationCompteContext(login, pass, verifPass);
         });
 
         bouttonConnection.setOnAction(actionevent -> {
