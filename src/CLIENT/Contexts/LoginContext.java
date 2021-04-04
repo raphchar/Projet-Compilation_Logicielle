@@ -1,4 +1,4 @@
-package Contexts;
+package CLIENT.Contexts;
 
 public class LoginContext implements IContext {
     private String id = "";

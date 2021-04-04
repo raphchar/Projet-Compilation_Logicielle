@@ -1,7 +1,7 @@
-package servPattern;
-import Protocoles.IProtocole;
-import Protocoles.ProtocoleCreationCompte;
-import Protocoles.ProtocoleLoginClient;
+package SERVEUR.servPattern;
+import SERVEUR.Protocoles.IProtocole;
+import SERVEUR.Protocoles.ProtocoleCreationCompte;
+import SERVEUR.Protocoles.ProtocoleLoginClient;
 
 import java.io.BufferedReader;
 import java.io.IOException;

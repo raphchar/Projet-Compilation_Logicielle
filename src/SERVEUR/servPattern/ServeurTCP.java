@@ -1,6 +1,6 @@
-package servPattern;
-import Contexts.IContext;
-import Protocoles.IProtocole;
+package SERVEUR.servPattern;
+import CLIENT.Contexts.IContext;
+import SERVEUR.Protocoles.IProtocole;
 
 import java.io.*;
 import java.net.*;

@@ -1,4 +1,4 @@
-package Protocoles;
+package SERVEUR.Protocoles;
 
 public interface IProtocole {
 

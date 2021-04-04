@@ -1,6 +1,6 @@
-package client;
+package CLIENT.connexion;
 
-import Contexts.IContext;
+import CLIENT.Contexts.IContext;
 
 import java.io.*;
 import java.net.*;
@@ -43,7 +43,7 @@ public class ClientTCP {
 			System.err.println("[CLIENT] Serveur inconnu : " + e);
 
 		} catch (ConnectException e) {
-			System.err.println("[CLIENT] Exception lors de la connexion:" + e);
+			System.err.println("[CLIENT] Exception lors de la CLIENT.connexion:" + e);
 			e.printStackTrace();
 
 		} catch (IOException e) {
@@ -86,7 +86,7 @@ public class ClientTCP {
 
 	}
 }
-//	/* A utiliser pour ne pas deleguer la connexion aux interfaces GUI */
+//	/* A utiliser pour ne pas deleguer la CLIENT.connexion aux interfaces CLIENT.GUI */
 //	public String transmettreChaineConnexionPonctuelle(String uneChaine) {
 //		String msgServeur = null;
 //		String chaineRetour = "";
@@ -103,7 +103,7 @@ public class ClientTCP {
 //				System.out.println("[CLIENT] msgServeur " + chaineRetour);
 //				deconnecterDuServeur();
 //			} catch (Exception e) {
-//				System.err.println("[CLIENT] Exception lors de la connexion client:  " + e);
+//				System.err.println("[CLIENT] Exception lors de la CLIENT.connexion client:  " + e);
 //			}
 //		}
 //		else

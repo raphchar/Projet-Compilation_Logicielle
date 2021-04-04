@@ -1,4 +1,4 @@
-package client;
+package CLIENT.connexion;
 
 import java.io.*;
 import java.net.*;
@@ -31,7 +31,7 @@ public class ClientConnection {
         } catch (UnknownHostException e) {
             System.err.println("Serveur inconnu : " + e);
         } catch (ConnectException e) {
-            System.err.println("Exception lors de la connexion:" + e);
+            System.err.println("Exception lors de la CLIENT.connexion:" + e);
             e.printStackTrace();
         } catch (IOException e) {
             System.err.println("Exception lors de l'echange de donnees:" + e);

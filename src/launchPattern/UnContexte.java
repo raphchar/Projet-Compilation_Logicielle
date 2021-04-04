@@ -1,6 +1,6 @@
 package launchPattern;
 
-import Contexts.IContext;
+import CLIENT.Contexts.IContext;
 
 public class UnContexte implements IContext {
 

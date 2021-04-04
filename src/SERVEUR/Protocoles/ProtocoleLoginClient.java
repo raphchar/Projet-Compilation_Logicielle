@@ -1,7 +1,7 @@
-package Protocoles;
+package SERVEUR.Protocoles;
 
 
-import Outils.Tools;
+import SERVEUR.Outils.Tools;
 
 
 public class ProtocoleLoginClient implements IProtocole {

@@ -1,9 +1,9 @@
-package GUI;
+package CLIENT.GUI;
 
-import Outils.Tools;
-import client.ClientTCP;
-import Contexts.CreationCompteContext;
-import Contexts.LoginContext;
+import SERVEUR.Outils.Tools;
+import CLIENT.connexion.ClientTCP;
+import CLIENT.Contexts.CreationCompteContext;
+import CLIENT.Contexts.LoginContext;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

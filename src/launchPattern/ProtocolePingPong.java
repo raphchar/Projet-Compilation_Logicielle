@@ -1,6 +1,6 @@
 //package launchPattern;
-//import Contexts.IContext;
-//import Protocoles.IProtocole;
+//import CLIENT.Contexts.IContext;
+//import SERVEUR.Protocoles.IProtocole;
 //
 //import java.io.*;
 //
