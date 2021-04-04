@@ -6,7 +6,7 @@ public class CreationCompteContext implements IContext, Serializable {
     private String id = "";
     private String pw = "";
     private String verifPw = "";
-    public final int protocole = 67;
+    public final int protocole = 2;
 
     @Override
     public int getProtocole() {
@@ -39,7 +39,7 @@ public class CreationCompteContext implements IContext, Serializable {
 
     @Override
     public String toString() {
-        return "CreationCompteContext{" +
+        return "C{" +
                 "id='" + id + '\'' +
                 ", pw='" + pw + '\'' +
                 ", verifPw='" + verifPw + '\'' +

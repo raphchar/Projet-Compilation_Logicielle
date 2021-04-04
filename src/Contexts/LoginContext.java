@@ -5,7 +5,15 @@ import java.io.Serializable;
 public class LoginContext implements IContext, Serializable {
     private String id = "";
     private String pw = "";
-    public final int protocole = 76;
+    public final int protocole = 1;
+
+    @Override
+    public String toString() {
+        return "L{" +
+                "id='" + id + '\'' +
+                ", pw='" + pw + '\'' +
+                '}';
+    }
 
     @Override
     public int getProtocole() {
@@ -31,11 +39,6 @@ public class LoginContext implements IContext, Serializable {
     public LoginContext(String login, String pass) {
         this.id = login;
         this.pw = pass;
-    }
-
-    @Override
-    public String toString() {
-        return "L{" + "id='" + id + '\'' + ", pw='" + pw + '\'' + '}';
     }
 
 }

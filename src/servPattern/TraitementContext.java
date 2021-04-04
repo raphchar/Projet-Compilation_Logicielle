@@ -6,6 +6,7 @@ import Protocoles.*;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.HashMap;
 
 /**
  * TraitementContext vient lire et écrire sur les socket du client, transmises par ServeurTCP
@@ -15,11 +16,13 @@ class TraitementContext extends Thread {
 
 	private final Socket clientSocket;
 	private ServeurTCP monServeurTCP;
+	private HashMap<String,String[]> messagesMap = new HashMap<String, String[]>();
 
 	public TraitementContext(Socket uneSocket, ServeurTCP unServeur) {
 		super("ServeurThread");
 		clientSocket = uneSocket;
 		monServeurTCP = unServeur;
+
 	}
 
 	public void run() {
@@ -41,15 +44,18 @@ class TraitementContext extends Thread {
 //			inputReq = is.readLine();
 			IContext context = (IContext) objectInputStream.readObject();
 			protocoleNumber = context.getProtocole();
-			System.out.println("[Traitement Conext] protocol Number : " + protocoleNumber);
 
-			// 76 = Login
-			if (protocoleNumber == 76) {
+			System.out.println("[Traitement Conext] protocol Number : " + protocoleNumber);
+			// 1 = Login
+			if (protocoleNumber == 1) {
 				protocole = new ProtocoleLoginClient();
 			}
-			// 67 = Creation de compte
-			else if (protocoleNumber == 67) {
+			// 2 = Creation de compte
+			else if (protocoleNumber == 2) {
 				protocole = new ProtocoleCreationCompte();
+			}
+			else if (protocoleNumber == 3){
+				protocole = new ProtocoleMessagePrive();
 			}
 
 			outPutRes = protocole.execute(context);
