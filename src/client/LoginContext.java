@@ -15,10 +15,7 @@ public class LoginContext implements IContext {
     // A modifier : choisir le moyen de transmission des données
     @Override
     public String toString() {
-        return "LoginContext{" +
-                "id='" + id + '\'' +
-                ", pw='" + pw + '\'' +
-                '}';
+        return "L{" + "id='" + id + '\'' + ", pw='" + pw + '\'' + '}';
     }
 
     public void setId(String id) {

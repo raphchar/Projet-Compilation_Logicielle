@@ -23,10 +23,10 @@ public class ServeurTCP extends Thread{
 		maxConnexions = 10;
 	} 
 
-	public ServeurTCP(IContext b,IProtocole p, int port) {
+	public ServeurTCP(IContext context,IProtocole protocol, int port) {
 		this(port);
-		contexte = b;
-		protocole = p;
+		contexte = context;
+		this.protocole = protocol;
 	}
 
 	public String toString() {        
@@ -55,6 +55,7 @@ public class ServeurTCP extends Thread{
 				System.out.println("[ServeurTCP] Accept failed: " + serverSocket.getLocalPort() + ", " + e);
 				System.exit(1);
 			}
+			// TODO : Mettre à jour le context
 			TraitementContext st = new TraitementContext( clientSocket , this );
 			st.start();
 		}

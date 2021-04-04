@@ -1,26 +1,55 @@
 package servPattern;
+import Protocoles.ProtocoleLoginClient;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.Socket;
 
 /**
- * Processus de Transaction (anciennement ServeurSpecifique)
+ * TraitementContext vient lire et écrire sur les socket du client, transmises par ServeurTCP
+ * En interprétant la première lettre du message entrant, TraitementContext sait quel protocole il doit appeller
  */
 class TraitementContext extends Thread {
 
-	private Socket clientSocket;
+	private final Socket clientSocket;
 	private ServeurTCP monServeurTCP;
 
 	public TraitementContext(Socket uneSocket, ServeurTCP unServeur) {
 		super("ServeurThread");
 		clientSocket = uneSocket;
-		System.out.println("[Traitement Context] CLIENT : " + clientSocket);
 		monServeurTCP = unServeur;
-	} 
+	}
 
-	public void run() {        
+	public void run() {
+		int protocoleNumber = 0;
+		IProtocole protocole = null;
+
 		try {
-			monServeurTCP.getProtocole().execute( monServeurTCP.getContexte() , clientSocket.getInputStream() , clientSocket.getOutputStream() );
+			// Récupérer le protocole
+			BufferedReader is = new BufferedReader(new InputStreamReader(
+					clientSocket.getInputStream()));
+			PrintStream os = new PrintStream(clientSocket.getOutputStream());
+
+			String inputReq;
+			String outPutRes;
+
+			protocoleNumber = is.read();
+			inputReq = is.readLine();
+
+			System.out.println("[Traitement Conext] protocol Number : " + protocoleNumber + " data : " + inputReq);
+			// 76 = Login
+			if (protocoleNumber == 76) {
+				protocole = new ProtocoleLoginClient();
+			}
+
+
+			outPutRes = protocole.execute(inputReq);
 			System.out.println("[Traitement Context] Traitement Context fait");
+			System.out.println("[Traitement Context] réponse : " + outPutRes);
+
+
 		} catch (IOException e) {
 			System.err.println("[Traitement Context] Exception : " + e );
 			e.printStackTrace();

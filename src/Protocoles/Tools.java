@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class Tools {
 
-    private String filename = "src/login/DatabaseID.txt";
+    private String filename = "src/servPattern/DatabaseID.txt";
 
     public void setFilename(String newFilname){
         this.filename = newFilname;
@@ -32,10 +32,14 @@ public class Tools {
             this.closeLogFile();
         }
         File file = new File(filename);
-        FileInputStream f = new FileInputStream(file);
-        ObjectInputStream s = new ObjectInputStream(f);
-        this.dictLogin = (HashMap<String,String>) s.readObject();
-        s.close();
+        BufferedReader f = new BufferedReader(new FileReader(file));
+        String line = null;
+        String[] datas;
+        while ((line = f.readLine()) != null) {
+            datas = line.split(" ");
+            this.dictLogin.put(datas[0], datas[1]);
+        }
+
         f.close();
     }
 
