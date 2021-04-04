@@ -1,4 +1,4 @@
-package Protocoles;
+package Outils;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -29,7 +29,7 @@ public class Tools {
         BufferedWriter f = new BufferedWriter(new FileWriter(file));
         String line = null;
         for (String key : this.dictLogin.keySet()) {
-            f.write(key + " " + this.dictLogin.get(key));
+            f.write(key + " " + this.dictLogin.get(key) + "\n");
         }
         f.close();
     }

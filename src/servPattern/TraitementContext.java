@@ -1,4 +1,6 @@
 package servPattern;
+import Protocoles.IProtocole;
+import Protocoles.ProtocoleCreationCompte;
 import Protocoles.ProtocoleLoginClient;
 
 import java.io.BufferedReader;
@@ -43,12 +45,15 @@ class TraitementContext extends Thread {
 			if (protocoleNumber == 76) {
 				protocole = new ProtocoleLoginClient();
 			}
-
+			// 67 = Creation de compte
+			else if (protocoleNumber == 67) {
+				protocole = new ProtocoleCreationCompte();
+			}
 
 			outPutRes = protocole.execute(inputReq);
 			System.out.println("[Traitement Context] Traitement Context fait");
-			System.out.println("[Traitement Context] réponse : " + outPutRes);
-
+			os.println(outPutRes);
+			os.flush();
 
 		} catch (IOException e) {
 			System.err.println("[Traitement Context] Exception : " + e );

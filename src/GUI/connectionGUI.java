@@ -1,7 +1,9 @@
 package GUI;
 
+import Outils.Tools;
 import client.ClientTCP;
-import client.LoginContext;
+import Contexts.CreationCompteContext;
+import Contexts.LoginContext;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -151,8 +153,36 @@ public class connectionGUI extends Application implements IconnectionGUI{
         Button bouttonConnection = new Button("Vous avez déjà un compte");
         bouttonCreation.setMinSize(150,40);
         bouttonConnection.setMinSize(150,40);
+        bouttonCreation.setOnAction(actionEvent -> {
+            String login = nomUtilisateurTextField.getText();
+            String pass = motDePasseTextField.getText();
+            String verifPass = verificationMotdePasseTextField.getText();
+
+            int state = 0;
+            if (!pass.equals(verifPass)) {state=1;}
+            try {
+                Tools tools = new Tools();
+                if (tools.isUser(login)){state=2;}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (state==0) {
+                CreationCompteContext compteContext = new CreationCompteContext(login, pass);
+                monClientTCP.transmettreChaine(compteContext.toString());
+            }
+            else {
+                try {
+                    System.out.println("State : " + state);
+                    CreationCompte();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         bouttonConnection.setOnAction(actionevent -> {
-            try {Connection();} catch (Exception e) {e.printStackTrace();}
+            try {Connection();
+            } catch (Exception e) {e.printStackTrace();}
         });
 
         VBox areaButton = new VBox();

@@ -1,7 +1,7 @@
 package Protocoles;
 
 
-import servPattern.IProtocole;
+import Outils.Tools;
 
 
 public class ProtocoleLoginClient implements IProtocole {
@@ -22,10 +22,10 @@ public class ProtocoleLoginClient implements IProtocole {
                 outPut = "Unknown user : " + userID;
             }
             else if (!tools.checkMDP(userID, userPW)) {
-                outPut = "Invalid password : " + userPW;
+                outPut = "Invalid password";
             }
             else {
-                outPut = "connection successful";
+                outPut = "Connection successful";
             }
         } catch (Exception e) {
             e.printStackTrace();

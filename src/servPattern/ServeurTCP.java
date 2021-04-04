@@ -1,4 +1,7 @@
 package servPattern;
+import Contexts.IContext;
+import Protocoles.IProtocole;
+
 import java.io.*;
 import java.net.*;
 
@@ -23,7 +26,7 @@ public class ServeurTCP extends Thread{
 		maxConnexions = 10;
 	} 
 
-	public ServeurTCP(IContext context,IProtocole protocol, int port) {
+	public ServeurTCP(IContext context, IProtocole protocol, int port) {
 		this(port);
 		contexte = context;
 		this.protocole = protocol;

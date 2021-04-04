@@ -1,4 +1,4 @@
-package servPattern;
+package Protocoles;
 
 public interface IProtocole {
 
