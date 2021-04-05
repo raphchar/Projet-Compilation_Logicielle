@@ -1,9 +1,11 @@
 package servPattern;
 import Contexts.IContext;
 import Protocoles.IProtocole;
+import Protocoles.ProtocoleDemarrage;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 
 public class ServeurTCP extends Thread{
@@ -42,8 +44,9 @@ public class ServeurTCP extends Thread{
 			System.exit(1);
 		}
 
-		/* initialisation des instances de conversations */
-		Demarrage demarrage = new Demarrage();
+		/* initialisation du serveur */
+		ProtocoleDemarrage protocoleDemarrage = new ProtocoleDemarrage();
+
 
 		/* On autorise maxConnexions traitements*/
 		while (nbConnexions <= maxConnexions) {
@@ -56,7 +59,7 @@ public class ServeurTCP extends Thread{
 				System.out.println("[ServeurTCP] Accept failed: " + serverSocket.getLocalPort() + ", " + e);
 				System.exit(1);
 			}
-			TraitementContext st = new TraitementContext( clientSocket , this );
+			TraitementContext st = new TraitementContext( clientSocket , this , protocoleDemarrage);
 			st.start();
 		}
 		System.out.println("[ServeurTCP] Deja " + nbConnexions + " clients. Maximum autorisé atteint");

@@ -4,7 +4,7 @@ import Contexts.CreationCompteContext;
 import Contexts.IContext;
 import Outils.Tools;
 
-public class ProtocoleCreationCompte implements IProtocole {
+public class ProtocoleCreationCompte extends ProtocoleDemarrage implements IProtocole {
 
     private Tools tools = new Tools();
 
@@ -27,6 +27,7 @@ public class ProtocoleCreationCompte implements IProtocole {
             }
             else {
                 tools.addUser(userID,userPW);
+                // Compte compte = new Compte(userID, new ArrayList<Conversation>());
                 outPut = "Compte cree";
             }
         } catch (Exception e) {

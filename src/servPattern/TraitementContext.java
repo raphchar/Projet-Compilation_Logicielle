@@ -1,10 +1,7 @@
 package servPattern;
 
 import Contexts.IContext;
-import Protocoles.IProtocole;
-import Protocoles.ProtocoleCreationCompte;
-import Protocoles.ProtocoleLoginClient;
-import Protocoles.ProtocoleMessagePrive;
+import Protocoles.*;
 
 import java.io.*;
 import java.net.Socket;
@@ -17,11 +14,13 @@ class TraitementContext extends Thread {
 
 	private final Socket clientSocket;
 	private ServeurTCP monServeurTCP;
+	private ProtocoleDemarrage demarrage;
 
-	public TraitementContext(Socket uneSocket, ServeurTCP unServeur) {
+	public TraitementContext(Socket uneSocket, ServeurTCP unServeur, ProtocoleDemarrage protocoleDemarrage) {
 		super("ServeurThread");
 		clientSocket = uneSocket;
 		monServeurTCP = unServeur;
+		this.demarrage = protocoleDemarrage;
 
 	}
 
@@ -54,6 +53,8 @@ class TraitementContext extends Thread {
 			else if (protocoleNumber == 3){
 				protocole = new ProtocoleMessagePrive();
 			}
+
+			System.out.println(demarrage.getConversationsOfUsers());
 
 			outPutRes = protocole.execute(context);
 			context.setEtat(outPutRes);

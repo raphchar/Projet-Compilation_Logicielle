@@ -2,10 +2,15 @@ package Outils;
 
 public class Conversation {
     private String logPath;
+    private String name;
     private String[] users;
+    private int id;
 
-    public Conversation(String[] users) {
+    public Conversation(String[] users, String name, String fileName) {
         this.users = users;
+        this.name = name;
+        this.logPath = "src/Conversation/" + fileName;
+        this.id = Integer.parseInt(fileName.substring(0, fileName.length()-4));
     }
 
     public String getLogPath() {
@@ -22,6 +27,22 @@ public class Conversation {
 
     public void setUsers(String[] users) {
         this.users = users;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public boolean isInConversation(String user) {

@@ -3,10 +3,12 @@ package Protocoles;
 
 import Contexts.IContext;
 import Contexts.LoginContext;
-import Outils.Tools;
+import Outils.*;
+
+import java.util.ArrayList;
 
 
-public class ProtocoleLoginClient implements IProtocole {
+public class ProtocoleLoginClient extends ProtocoleDemarrage implements IProtocole {
 
     private Tools tools = new Tools();
 
@@ -27,6 +29,16 @@ public class ProtocoleLoginClient implements IProtocole {
                 outPut = "Mot de passe incorrect";
             }
             else {
+                ArrayList<String> convos = getUserConvo(userID);
+                ArrayList<Conversation> conversations = new ArrayList<Conversation>();
+
+                for (String filePath : convos) {
+                    Conversation conversation = loadConversation(filePath);
+                    conversations.add(conversation);
+                }
+                Compte compte = new Compte(userID, conversations);
+                loggedAccounts.add(compte);
+
                 outPut = "Connexion validee";
             }
         } catch (Exception e) {

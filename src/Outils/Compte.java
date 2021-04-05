@@ -11,6 +11,14 @@ public class Compte {
         this.listConvos = listConvos;
     }
 
+    public ArrayList<Conversation> getListConvos() {
+        return listConvos;
+    }
+
+    public void setListConvos(ArrayList<Conversation> listConvos) {
+        this.listConvos = listConvos;
+    }
+
     public String getUserID() {
         return userID;
     }
@@ -19,11 +27,4 @@ public class Compte {
         this.userID = userID;
     }
 
-    public ArrayList<Conversation> getListConvos() {
-        return listConvos;
-    }
-
-    public void setListConvos(ArrayList<Conversation> listConvos) {
-        this.listConvos = listConvos;
-    }
 }

@@ -25,7 +25,7 @@ public class Tools {
         PrintWriter pw = new PrintWriter(file);
         pw.close();
 
-        // copy whiole hashmap into the file
+        // copy whole hashmap into the file
         BufferedWriter f = new BufferedWriter(new FileWriter(file));
         String line = null;
         for (String key : this.dictLogin.keySet()) {
