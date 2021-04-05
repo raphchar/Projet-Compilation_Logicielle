@@ -7,6 +7,23 @@ public class CreationCompteContext implements IContext, Serializable {
     private String pw = "";
     private String verifPw = "";
     public final int protocole = 2;
+    public String etat;
+
+
+    public CreationCompteContext(String id, String pw, String verifPw) {
+        this.id = id;
+        this.pw = pw;
+        this.verifPw = verifPw;
+    }
+
+    @Override
+    public String toString() {
+        return "C{" +
+                "id='" + id + '\'' +
+                ", pw='" + pw + '\'' +
+                ", verifPw='" + verifPw + '\'' +
+                '}';
+    }
 
     @Override
     public int getProtocole() {
@@ -38,18 +55,14 @@ public class CreationCompteContext implements IContext, Serializable {
     }
 
     @Override
-    public String toString() {
-        return "C{" +
-                "id='" + id + '\'' +
-                ", pw='" + pw + '\'' +
-                ", verifPw='" + verifPw + '\'' +
-                '}';
+    public String getEtat() {
+        return etat;
     }
 
-    public CreationCompteContext(String id, String pw, String verifPw) {
-        this.id = id;
-        this.pw = pw;
-        this.verifPw = verifPw;
+    @Override
+    public void setEtat(String etat) {
+        this.etat = etat;
     }
+
 
 }

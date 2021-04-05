@@ -82,7 +82,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
             LoginContext myLoginContext = new LoginContext(login, pass);
             try {
                 monClientTCP.transmettreContext(myLoginContext);
-            } catch (IOException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });
@@ -162,7 +162,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
             CreationCompteContext compteContext = new CreationCompteContext(login, pass, verifPass);
             try {
                 monClientTCP.transmettreContext(compteContext);
-            } catch (IOException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });

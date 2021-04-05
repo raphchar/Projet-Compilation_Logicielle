@@ -6,6 +6,13 @@ public class LoginContext implements IContext, Serializable {
     private String id = "";
     private String pw = "";
     public final int protocole = 1;
+    public String etat;
+
+
+    public LoginContext(String login, String pass) {
+        this.id = login;
+        this.pw = pass;
+    }
 
     @Override
     public String toString() {
@@ -36,10 +43,14 @@ public class LoginContext implements IContext, Serializable {
         this.pw = pw;
     }
 
-    public LoginContext(String login, String pass) {
-        this.id = login;
-        this.pw = pass;
+    @Override
+    public String getEtat() {
+        return etat;
     }
 
+    @Override
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
 }
 

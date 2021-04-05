@@ -2,11 +2,12 @@ package servPattern;
 
 import Contexts.IContext;
 import Protocoles.IProtocole;
-import Protocoles.*;
+import Protocoles.ProtocoleCreationCompte;
+import Protocoles.ProtocoleLoginClient;
+import Protocoles.ProtocoleMessagePrive;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.HashMap;
 
 /**
  * TraitementContext vient lire et écrire sur les socket du client, transmises par ServeurTCP
@@ -16,7 +17,6 @@ class TraitementContext extends Thread {
 
 	private final Socket clientSocket;
 	private ServeurTCP monServeurTCP;
-	private HashMap<String,String[]> messagesMap = new HashMap<String, String[]>();
 
 	public TraitementContext(Socket uneSocket, ServeurTCP unServeur) {
 		super("ServeurThread");
@@ -30,18 +30,15 @@ class TraitementContext extends Thread {
 		IProtocole protocole = null;
 
 		try {
-			BufferedReader is = new BufferedReader(new InputStreamReader(
-					clientSocket.getInputStream()));
-			PrintStream os = new PrintStream(clientSocket.getOutputStream());
 
 			InputStream inputStream = clientSocket.getInputStream();
 			ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 
-			String inputReq;
+			OutputStream outputStream = clientSocket.getOutputStream();
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+
 			String outPutRes;
 
-//			protocoleNumber = is.read();
-//			inputReq = is.readLine();
 			IContext context = (IContext) objectInputStream.readObject();
 			protocoleNumber = context.getProtocole();
 
@@ -59,18 +56,12 @@ class TraitementContext extends Thread {
 			}
 
 			outPutRes = protocole.execute(context);
-			System.out.println("[Traitement Context] Traitement Context fait");
-			os.println(outPutRes);
-			os.flush();
+			context.setEtat(outPutRes);
+			objectOutputStream.writeObject(context);
 
-//		} catch (IOException e) {
-//			System.err.println("[Traitement Context] Exception : " + e );
-//			e.printStackTrace();
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+			System.out.println("[Traitement Context] Traitement Context fait");
+
+		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

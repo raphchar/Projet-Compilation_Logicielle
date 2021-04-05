@@ -82,7 +82,7 @@ public class ClientTCP {
 		return msgServeur;
 	}
 
-	public void transmettreContext(IContext context) throws IOException {
+	public void transmettreContext(IContext context) throws IOException, ClassNotFoundException {
 
 		OutputStream outputStream = socketServeur.getOutputStream();
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
@@ -90,47 +90,11 @@ public class ClientTCP {
 		System.out.println("[CLIENT] Requete context client : " + context);
 		objectOutputStream.writeObject(context);
 
-		String msgServeur = null;
-		msgServeur = socIn.readLine();
-		System.out.println("[CLIENT] Reponse serveur : " + msgServeur);
+		InputStream inputStream = socketServeur.getInputStream();
+		ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+
+		IContext contextReceived = (IContext) objectInputStream.readObject();
+
+		System.out.println("[CLIENT] Reponse serveur : " + contextReceived.getEtat());
 	}
 }
-//	/* A utiliser pour ne pas deleguer la connexion aux interfaces GUI */
-//	public String transmettreChaineConnexionPonctuelle(String uneChaine) {
-//		String msgServeur = null;
-//		String chaineRetour = "";
-//		System.out.println("\n[CLIENT] Client connexionTransmettreChaine " + uneChaine);
-//		if (connecterAuServeur() == true) {
-//			try {
-//				socOut.println(uneChaine);
-//				socOut.flush();
-//				msgServeur = socIn.readLine();
-//				while( msgServeur != null && msgServeur.length() >0) {
-//					chaineRetour += msgServeur + "\n";
-//					msgServeur = socIn.readLine();
-//				}
-//				System.out.println("[CLIENT] msgServeur " + chaineRetour);
-//				deconnecterDuServeur();
-//			} catch (Exception e) {
-//				System.err.println("[CLIENT] Exception lors de la connexion client:  " + e);
-//			}
-//		}
-//		else
-//		{
-//			System.err.println("[CLIENT] Connexion echouee");
-//		}
-//		return chaineRetour;
-//	}
-//
-//}
-
-//	public void transmitioneOrdre(String ordre){
-//		this.ordre = ordre;
-//		try{
-//			socOut.println(this.ordre);
-//			socOut.flush();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-//}

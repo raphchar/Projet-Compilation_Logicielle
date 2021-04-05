@@ -9,17 +9,13 @@ import java.net.*;
 public class ServeurTCP extends Thread{
 
 	private static int nbConnexions = 0;
-	
 	/** Maximum de connexions client autorisées */
 	private int maxConnexions;
-	
 	private Socket clientSocket;
-
 	private IContext contexte;
-	
 	private IProtocole protocole;
-	
 	private int numeroPort;
+	private String convPath = "src/Conversations/";
 
 	public ServeurTCP(int unNumeroPort) {        
 		numeroPort = unNumeroPort;
@@ -46,7 +42,9 @@ public class ServeurTCP extends Thread{
 			System.exit(1);
 		}
 
-		
+		/* initialisation des instances de conversations */
+		Demarrage demarrage = new Demarrage();
+
 		/* On autorise maxConnexions traitements*/
 		while (nbConnexions <= maxConnexions) {
 			try {

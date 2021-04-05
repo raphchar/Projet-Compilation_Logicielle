@@ -80,12 +80,10 @@ public class Tools {
         }
     }
 
-    public void fillMessageMap(HashMap<String,String[]> hashMap) {
-        File dir = new File("src/Conversations/");
-        File[] directoryListing = dir.listFiles();
-        for (File child : directoryListing) {
-
-        }
+    public String[] getUserList() throws Exception {
+        this.openLogFile();
+        String[] users = this.dictLogin.keySet().toArray(new String[0]);
+        this.closeLogFile();
+        return users;
     }
-
 }

@@ -7,6 +7,8 @@ public class MessagePriveContext implements IContext, Serializable {
     private String sender = "";
     private String receiver = "";
     public final int protocole = 3;
+    public String etat;
+
 
     public MessagePriveContext(String message, String sender, String receiver) {
         this.message = message;
@@ -50,5 +52,15 @@ public class MessagePriveContext implements IContext, Serializable {
     @Override
     public int getProtocole() {
         return this.protocole;
+    }
+
+    @Override
+    public String getEtat() {
+        return etat;
+    }
+
+    @Override
+    public void setEtat(String etat) {
+        this.etat = etat;
     }
 }
