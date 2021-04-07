@@ -7,6 +7,7 @@ import Outils.Tools;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class ProtocoleDemarrage implements IProtocole {
@@ -79,12 +80,12 @@ public class ProtocoleDemarrage implements IProtocole {
         }
 
         String path = convoPath + filePath;
-        BufferedReader f = new BufferedReader(new FileReader(filePath));
+        BufferedReader f = new BufferedReader(new FileReader(path));
 
         String[] convoUsers = f.readLine().split(" ");
         String convoName = f.readLine();
 
-        Conversation convo = new Conversation(convoUsers, convoName, filePath);
+        Conversation convo = new Conversation(convoUsers, convoName, path);
         this.loadedConservations.add(convo);
 
         return convo;
