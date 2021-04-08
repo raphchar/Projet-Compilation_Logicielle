@@ -201,6 +201,50 @@ public class connectionGUI extends Application implements IconnectionGUI{
         primaryStage.setScene(myScene);
         primaryStage.show();
     }
+
+    public void listConversations() {
+        // IHM n°2 après connexion - Présentation des conversations sélectionnables
+
+        // Contexte pour récupérer la Liste des conversations liées au compte
+        ListConvContext myListConvContext = new ListConvContext();
+
+        try {
+            IContext context = monClientTCP.transmettreContext(myListConvContext);
+            String etat = context.getEtat();
+
+            if (etat.equals("Liste conversations transmise")){
+                //ArrayList<Conversation> conversations = RECUPERER LA LISTE DE CONVERSATIONS
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<Button> buttonList = new ArrayList<>();
+        for (Conversation convo : conversations) {
+            Button newButtonConvo = new Button(convo.getName());
+            newButtonConvo.setMinSize(150, 40);
+            newButtonConvo.setOnAction(actionevent -> {
+                // Lancer la conversation correspondante
+                // Créer un contexte pour demander contenu conversation
+            });
+            buttonList.add(newButtonConvo);
+        }
+
+        VBox areaButton = new VBox();
+        areaButton.getChildren().addAll(buttonList);
+        VBox.setMargin(areaButton, new Insets(10,10,10,10));
+        areaButton.setSpacing(30);
+        areaButton.setAlignment(Pos.CENTER_LEFT);
+
+        //Creating main Pane
+        mainPane.setAlignment(Pos.CENTER);
+        mainPane.setSpacing(30);
+        mainPane.getChildren().addAll(areaButton);
+        Scene myScene = new Scene(mainPane, 300, 400);
+        primaryStage.setScene(myScene);
+        primaryStage.show();
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
