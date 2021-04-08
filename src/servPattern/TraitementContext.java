@@ -27,44 +27,46 @@ class TraitementContext extends Thread {
 	public void run() {
 		int protocoleNumber = 0;
 		IProtocole protocole = null;
+		// Inclure un while pour rester en écoute
+		while (true) {
 
-		try {
+			try {
 
-			InputStream inputStream = clientSocket.getInputStream();
-			ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+				InputStream inputStream = clientSocket.getInputStream();
+				ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 
-			OutputStream outputStream = clientSocket.getOutputStream();
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+				OutputStream outputStream = clientSocket.getOutputStream();
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 
-			String outPutRes;
+				String outPutRes;
 
-			IContext context = (IContext) objectInputStream.readObject();
-			protocoleNumber = context.getProtocole();
+				IContext context = (IContext) objectInputStream.readObject();
+				protocoleNumber = context.getProtocole();
 
-			System.out.println("[Traitement Conext] protocol Number : " + protocoleNumber);
-			// 1 = Login
-			if (protocoleNumber == 1) {
-				protocole = new ProtocoleLoginClient();
+				System.out.println("[Traitement Conext] protocol Number : " + protocoleNumber);
+				// 1 = Login
+				if (protocoleNumber == 1) {
+					protocole = new ProtocoleLoginClient();
+				}
+				// 2 = Creation de compte
+				else if (protocoleNumber == 2) {
+					protocole = new ProtocoleCreationCompte();
+				} else if (protocoleNumber == 3) {
+					protocole = new ProtocoleMessagePrive();
+				}
+
+				//System.out.println(demarrage.getConversationsOfUsers());
+
+				//assert protocole != null;
+				outPutRes = protocole.execute(context);
+				context.setEtat(outPutRes);
+				objectOutputStream.writeObject(context);
+
+				System.out.println("[Traitement Context] Traitement Context fait");
+
+			} catch (IOException | ClassNotFoundException e) {
+				e.printStackTrace();
 			}
-			// 2 = Creation de compte
-			else if (protocoleNumber == 2) {
-				protocole = new ProtocoleCreationCompte();
-			}
-			else if (protocoleNumber == 3){
-				protocole = new ProtocoleMessagePrive();
-			}
-
-			//System.out.println(demarrage.getConversationsOfUsers());
-
-			//assert protocole != null;
-			outPutRes = protocole.execute(context);
-			context.setEtat(outPutRes);
-			objectOutputStream.writeObject(context);
-
-			System.out.println("[Traitement Context] Traitement Context fait");
-
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 	}
 }
