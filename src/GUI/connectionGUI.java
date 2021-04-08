@@ -206,6 +206,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
     public void listConversations(IContext context) {
         // IHM n°2 après connexion - Présentation des conversations sélectionnables
 
+        mainPane = new VBox();
         // Contexte pour récupérer la Liste des conversations liées au compte
         LoginContext loginContext = (LoginContext) context;
 
