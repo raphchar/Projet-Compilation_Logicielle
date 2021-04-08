@@ -1,8 +1,9 @@
 package Outils;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Conversation {
+public class Conversation implements Serializable {
     private String logPath;
     private String name;
     private String[] users;

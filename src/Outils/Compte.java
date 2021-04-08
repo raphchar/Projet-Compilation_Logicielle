@@ -1,8 +1,9 @@
 package Outils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Compte {
+public class Compte implements Serializable {
     public String userID;
     private ArrayList<Conversation> listConvos;
 

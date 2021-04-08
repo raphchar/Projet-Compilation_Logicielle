@@ -4,6 +4,7 @@ import Contexts.CreationCompteContext;
 import Contexts.IContext;
 import Contexts.LoginContext;
 import Contexts.QuitterContext;
+import Outils.Conversation;
 import connexion.ClientTCP;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -18,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class connectionGUI extends Application implements IconnectionGUI{
     public VBox mainPane;
@@ -94,8 +96,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
                 String etat = context.getEtat();
 
                 if (etat.equals("Connexion validee")){
-                    System.out.println("La connection s'est bien déroulée");
-                    // TODO : Création de la nouvelle fenêtre IHM de discussion
+                    listConversations(context);
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -202,25 +203,14 @@ public class connectionGUI extends Application implements IconnectionGUI{
         primaryStage.show();
     }
 
-    public void listConversations() {
+    public void listConversations(IContext context) {
         // IHM n°2 après connexion - Présentation des conversations sélectionnables
 
         // Contexte pour récupérer la Liste des conversations liées au compte
-        ListConvContext myListConvContext = new ListConvContext();
+        LoginContext loginContext = (LoginContext) context;
 
-        try {
-            IContext context = monClientTCP.transmettreContext(myListConvContext);
-            String etat = context.getEtat();
-
-            if (etat.equals("Liste conversations transmise")){
-                //ArrayList<Conversation> conversations = RECUPERER LA LISTE DE CONVERSATIONS
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        ArrayList<Button> buttonList = new ArrayList<>();
-        for (Conversation convo : conversations) {
+        ArrayList<Button> buttonList = new ArrayList<Button>();
+        for (Conversation convo : loginContext.compte.getListConvos()) {
             Button newButtonConvo = new Button(convo.getName());
             newButtonConvo.setMinSize(150, 40);
             newButtonConvo.setOnAction(actionevent -> {

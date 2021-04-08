@@ -1,5 +1,7 @@
 package Contexts;
 
+import Outils.Compte;
+
 import java.io.Serializable;
 
 public class LoginContext implements IContext, Serializable {
@@ -7,7 +9,7 @@ public class LoginContext implements IContext, Serializable {
     private String pw = "";
     public final int protocole = 1;
     public String etat;
-
+    public Compte compte;
 
     public LoginContext(String login, String pass) {
         this.id = login;

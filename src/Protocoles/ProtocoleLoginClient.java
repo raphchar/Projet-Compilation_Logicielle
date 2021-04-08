@@ -44,6 +44,8 @@ public class ProtocoleLoginClient implements IProtocole {
                 protocoleDemarrage.ajoutCompte(compte);
 
                 outPut = "Connexion validee";
+                loginContext.compte = compte;
+
             }
         } catch (Exception e) {
             e.printStackTrace();
