@@ -33,7 +33,8 @@ class TraitementContext extends Thread {
 		while (listening) {
 
 			try {
-
+				
+				System.out.println("[Traitement Context] Attente Contexte...");
 				InputStream inputStream = clientSocket.getInputStream();
 				ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 

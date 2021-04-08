@@ -18,11 +18,11 @@ public class QuitterContext implements IContext, Serializable {
 
     @Override
     public void setEtat(String etat) {
-
+        this.etat = etat;
     }
 
     @Override
     public String getEtat() {
-        return null;
+        return this.etat;
     }
 }

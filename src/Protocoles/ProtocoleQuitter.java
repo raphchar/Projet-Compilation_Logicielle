@@ -8,7 +8,7 @@ public class ProtocoleQuitter extends ProtocoleDemarrage implements IProtocole {
     @Override
     public String execute(IContext context) {
         System.out.println("[ProtQuitter] executing...");
-        QuitterContext loginContext = (QuitterContext) context;
+        QuitterContext quitterContext = (QuitterContext) context;
 
         String outPut = "fermeture reussie";
         return outPut;
