@@ -10,7 +10,7 @@ public class Conversation {
         this.users = users;
         this.name = name;
         this.logPath = "src/Conversation/" + fileName;
-        this.id = Integer.parseInt(fileName.substring(0, fileName.length()-4));
+        this.id = Integer.parseInt(fileName.substring("src/Conversation/".length()+1, fileName.length()-4));
     }
 
     public String getLogPath() {
