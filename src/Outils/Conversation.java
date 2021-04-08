@@ -1,6 +1,7 @@
 package Outils;
 
-import java.io.Serializable;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Conversation implements Serializable {
@@ -8,12 +9,17 @@ public class Conversation implements Serializable {
     private String name;
     private String[] users;
     private int id;
+    private ArrayList<String[]> logs = new ArrayList<String[]>();
 
     public Conversation(String[] users, String name, String fileName) {
         this.users = users;
         this.name = name;
         this.logPath = "src/Conversation/" + fileName;
         this.id = Integer.parseInt(fileName.substring("src/Conversation/".length()+1, fileName.length()-4));
+    }
+
+    public ArrayList<String[]> getLogs() {
+        return logs;
     }
 
     public String toString () {
@@ -60,5 +66,17 @@ public class Conversation implements Serializable {
             }
         }
         return state;
+    }
+
+    public void loadLogs() throws IOException {
+        File file = new File(logPath);
+        BufferedReader f = new BufferedReader(new FileReader(file));
+        String line;
+
+        while ( (line = f.readLine()) != null) {
+            String[] lineSplit;
+            lineSplit = line.split(" ");
+            logs.add(lineSplit);
+        }
     }
 }

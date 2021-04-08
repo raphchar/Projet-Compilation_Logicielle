@@ -6,7 +6,7 @@ public class MessagePriveContext implements IContext, Serializable {
     private String message;
     private String sender = "";
     private String receiver = "";
-    public final int protocole = 3;
+    public final int protocole = 4;
     public String etat;
 
 

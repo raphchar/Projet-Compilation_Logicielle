@@ -50,9 +50,9 @@ class TraitementContext extends ServeurTCP {
 				else if (protocoleNumber == 2) {
 					protocole = new ProtocoleCreationCompte();
 				}
-				// 3 = Message Privé
+				// 3 = Affichage conversation
 				else if (protocoleNumber == 3) {
-					protocole = new ProtocoleMessagePrive();
+					protocole = new ProtocoleAffichConvo();
 				}
 				// 10 = Stop
 				else if (protocoleNumber == 10) {
@@ -64,7 +64,6 @@ class TraitementContext extends ServeurTCP {
 				context.setEtat(outPutRes);
 				objectOutputStream.writeObject(context);
 
-				System.out.println("[Traitement Context] Comptes connectes : " + protocoleDemarrage.loggedAccounts);
 				System.out.println("[Traitement Context] Traitement Context fait");
 
 			} catch (IOException | ClassNotFoundException e) {
