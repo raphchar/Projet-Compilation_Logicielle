@@ -289,12 +289,15 @@ public class connectionGUI extends Application implements IconnectionGUI{
         // Textfield Entrer Message
         TextField entrerMessage = new TextField();
         entrerMessage.setPromptText("Ecrire votre message ici ...");
-        entrerMessage.setMinSize(150, 40);
+        entrerMessage.setMinSize(500, 30);
 
         // Bouton Envoie Message
         Button envoieMessageButton = new Button();
         Image imageEnvoieMessage = new Image(getClass().getResourceAsStream("envoieMessage.png"));
-        envoieMessageButton.setGraphic(new ImageView(imageEnvoieMessage));
+        ImageView imageView = new ImageView(imageEnvoieMessage);
+        imageView.setFitHeight(25);
+        imageView.setFitWidth(25);
+        envoieMessageButton.setGraphic(imageView);
         envoieMessageButton.setOnAction(actionevent -> {
             String message = entrerMessage.getText();
             // todo : context mp uypload
