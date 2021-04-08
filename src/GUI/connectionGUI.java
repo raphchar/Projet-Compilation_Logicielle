@@ -1,7 +1,6 @@
 package GUI;
 
 import Contexts.CreationCompteContext;
-import Contexts.IContext;
 import Contexts.LoginContext;
 import connexion.ClientTCP;
 import javafx.application.Application;
@@ -17,7 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.ObjectInput;
 
 public class connectionGUI extends Application implements IconnectionGUI{
     public VBox mainPane;
