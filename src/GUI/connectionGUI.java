@@ -8,7 +8,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -261,6 +264,49 @@ public class connectionGUI extends Application implements IconnectionGUI{
         primaryStage.show();
     }
 
+    public void conversation(IContext context) {
+        // IHM n°3 - Affichage conversation
+
+        mainPane = new VBox();
+
+        // Contexte pour récupérer la Liste des conversations liées au compte
+        // TODO : Contexte qui récupère les logs & le compte
+
+        // TextArea Messagerie
+        TextArea textsMessagerie = new TextArea();
+        // TODO : Pour chaque message dans le log de la conversation faire:
+        // textsMessagerie.setText(TEXT A AFFICHER+"\n");
+        textsMessagerie.setStyle("-fx-font-size: 12 px");
+
+        // Textfield Entrer Message
+        TextField entrerMessage = new TextField();
+        entrerMessage.setPromptText("Ecrire votre message ici ...");
+        entrerMessage.setMinSize(150, 40);
+
+        // Bouton Envoie Message
+        Button envoieMessageButton = new Button();
+        Image imageEnvoieMessage = new Image(getClass().getResourceAsStream("envoieMessage.png"));
+        envoieMessageButton.setGraphic(new ImageView(imageEnvoieMessage));
+        envoieMessageButton.setOnAction(actionevent -> {
+            // TODO : Ecrire dans le .txt le nouveau message
+            // textsMessagerie.setText(ECRIRE NOUVEAU MESSAGE ICI);
+        });
+
+        //HBox zone écriture message
+        HBox areaMessagerie = new HBox();
+        areaMessagerie.getChildren().addAll(entrerMessage,envoieMessageButton);
+        VBox.setMargin(areaMessagerie, new Insets(10,10,10,10));
+        //areaButton.setSpacing(30);
+        areaMessagerie.setAlignment(Pos.CENTER);
+
+        //Creating main Pane
+        mainPane.setAlignment(Pos.CENTER);
+        //mainPane.setSpacing(30);
+        mainPane.getChildren().addAll(textsMessagerie,areaMessagerie);
+        Scene myScene = new Scene(mainPane, 600, 600);
+        primaryStage.setScene(myScene);
+        primaryStage.show();
+    }
 
 
     public static void main(String[] args) {
