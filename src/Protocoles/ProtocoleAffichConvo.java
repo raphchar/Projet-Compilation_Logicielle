@@ -27,7 +27,7 @@ public class ProtocoleAffichConvo implements IProtocole{
 
             }
         }
-        System.out.println("[ProtAffichConvo] convo : " + affichageConvoContext.getConversation().getLogs());
+//        System.out.println("[ProtAffichConvo] convo : " + (affichageConvoContext.getConversation().getLogs()).get(0) );
         return outPut;
     }
 }

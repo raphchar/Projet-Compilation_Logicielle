@@ -17,6 +17,13 @@ public class AffichageConvoContext implements IContext, Serializable {
         this.compte = compte;
     }
 
+    @Override
+    public String toString() {
+        return "AffichConvo{" +
+                "nomConvo='" + nomConvo + '\'' +
+                '}';
+    }
+
     public Compte getCompte() {
         return compte;
     }

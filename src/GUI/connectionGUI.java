@@ -1,9 +1,6 @@
 package GUI;
 
-import Contexts.CreationCompteContext;
-import Contexts.IContext;
-import Contexts.LoginContext;
-import Contexts.QuitterContext;
+import Contexts.*;
 import Outils.Conversation;
 import connexion.ClientTCP;
 import javafx.application.Application;
@@ -225,7 +222,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
         newConvButton.setMinSize(150, 40);
         newConvButton.setTextFill(Color.BLUE);
         newConvButton.setOnAction(actionevent -> {
-            // TODO : Créer une nouvelle conversation
+            //TODO : coté serveur nouvelle convo
         });
 
         // Boutons Conversations
@@ -234,9 +231,13 @@ public class connectionGUI extends Application implements IconnectionGUI{
             Button newButtonConvo = new Button(convo.getName());
             newButtonConvo.setMinSize(150, 40);
             newButtonConvo.setOnAction(actionevent -> {
-                // TODO : Lier les conversations aux boutons
-                // Lancer la conversation correspondante
-                // Créer un contexte pour demander contenu conversation
+                AffichageConvoContext context1 = new AffichageConvoContext(convo.getName(), loginContext.compte);
+                try {
+                    context1 = (AffichageConvoContext) monClientTCP.transmettreContext(context1);
+
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             });
             buttonList.add(newButtonConvo);
         }
