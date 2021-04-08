@@ -27,8 +27,10 @@ class TraitementContext extends Thread {
 	public void run() {
 		int protocoleNumber = 0;
 		IProtocole protocole = null;
+		boolean listening = true;
+
 		// Inclure un while pour rester en écoute
-		while (true) {
+		while (listening) {
 
 			try {
 
@@ -51,13 +53,16 @@ class TraitementContext extends Thread {
 				// 2 = Creation de compte
 				else if (protocoleNumber == 2) {
 					protocole = new ProtocoleCreationCompte();
-				} else if (protocoleNumber == 3) {
+				}
+				// 3 = Message Privé
+				else if (protocoleNumber == 3) {
 					protocole = new ProtocoleMessagePrive();
 				}
+				// 10 = Stop
+				else if (protocoleNumber == 10) {
+					listening = false;
+				}
 
-				//System.out.println(demarrage.getConversationsOfUsers());
-
-				//assert protocole != null;
 				outPutRes = protocole.execute(context);
 				context.setEtat(outPutRes);
 				objectOutputStream.writeObject(context);
@@ -67,6 +72,11 @@ class TraitementContext extends Thread {
 			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
+		}
+		try {
+			clientSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

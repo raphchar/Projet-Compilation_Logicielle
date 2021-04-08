@@ -82,7 +82,7 @@ public class ClientTCP {
 		return msgServeur;
 	}
 
-	public String transmettreContext(IContext context) throws IOException, ClassNotFoundException {
+	public IContext transmettreContext(IContext context) throws IOException, ClassNotFoundException {
 
 		OutputStream outputStream = socketServeur.getOutputStream();
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
@@ -96,7 +96,7 @@ public class ClientTCP {
 		IContext contextReceived = (IContext) objectInputStream.readObject();
 
 		System.out.println("[CLIENT] Reponse serveur : " + contextReceived.getEtat());
-		return contextReceived.getEtat();
+		return contextReceived;
 	}
 
 
