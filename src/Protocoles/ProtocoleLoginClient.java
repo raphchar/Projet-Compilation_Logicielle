@@ -28,20 +28,20 @@ public class ProtocoleLoginClient implements IProtocole {
             else if (!tools.checkMDP(userID, userPW)) {
                 outPut = "Mot de passe incorrect";
             }
+            else if (protocoleDemarrage.isConnected(userID)) {
+                outPut = "Compte déjà connecté";
+            }
             else {
                 ArrayList<String> convos = protocoleDemarrage.getUserConvo(userID);
-                System.out.println("[ProtLoginClient] convos" + convos);
                 ArrayList<Conversation> conversations = new ArrayList<Conversation>();
 
                 for (String filePath : convos) {
                     Conversation conversation = protocoleDemarrage.loadConversation(filePath);
                     conversations.add(conversation);
                 }
-                System.out.println("[ProtLoginClient] conversations" + conversations);
-                System.out.println("[ProtLoginClient] listConv" + protocoleDemarrage.getLoadedConservations());
 
                 Compte compte = new Compte(userID, conversations);
-                protocoleDemarrage.loggedAccounts.add(compte);
+                protocoleDemarrage.ajoutCompte(compte);
 
                 outPut = "Connexion validee";
             }

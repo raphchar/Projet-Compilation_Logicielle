@@ -64,6 +64,7 @@ class TraitementContext extends ServeurTCP {
 				context.setEtat(outPutRes);
 				objectOutputStream.writeObject(context);
 
+				System.out.println("[Traitement Context] Comptes connectes : " + protocoleDemarrage.loggedAccounts);
 				System.out.println("[Traitement Context] Traitement Context fait");
 
 			} catch (IOException | ClassNotFoundException e) {

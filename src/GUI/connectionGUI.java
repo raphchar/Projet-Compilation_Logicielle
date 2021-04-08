@@ -22,6 +22,7 @@ import java.io.IOException;
 public class connectionGUI extends Application implements IconnectionGUI{
     public VBox mainPane;
     public Stage primaryStage;
+
     // Données pour la connection
     public String unNomServeur = "localhost";
     public int unNumero = 6666;

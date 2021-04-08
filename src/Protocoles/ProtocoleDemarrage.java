@@ -60,7 +60,6 @@ public class ProtocoleDemarrage {
         return loadedConservations;
     }
 
-    // TODO : si nouvelle convo ??? cf execute imo
     public void setConversationsOfUsers(HashMap<String, ArrayList<String>> conversationsOfUsers) {
         ConversationsOfUsers = conversationsOfUsers;
     }
@@ -89,5 +88,17 @@ public class ProtocoleDemarrage {
         this.loadedConservations.add(convo);
 
         return convo;
+    }
+
+    public boolean isConnected(String userID) {
+        for (Compte account : loggedAccounts) {
+            if (account.getUserID().equals(userID))
+                return true;
+        }
+        return false;
+    }
+
+    public void ajoutCompte(Compte compte) {
+        loggedAccounts.add(compte);
     }
 }
