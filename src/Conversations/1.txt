@@ -1,3 +1,5 @@
-enzoledentu raphaelcharron paulroesser julienduchemann
+enzoledentu raphaelcharron paulroeser julienduchemann
 nomDeLaConversation
-enzoledentu(10:25:21) : c'est le début de la conversation
+enzoledentu(10:21:21) : c'est le début de la conversation
+raphaelcharron(10:22:22) : enzo c'est le meilleur
+paulroeser(10:23:22) : Carrément!

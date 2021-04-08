@@ -238,7 +238,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
                 AffichageConvoContext context1 = new AffichageConvoContext(convo.getName(), loginContext.compte);
                 try {
                     context1 = (AffichageConvoContext) monClientTCP.transmettreContext(context1);
-
+                    conversation(context1);
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -270,13 +270,13 @@ public class connectionGUI extends Application implements IconnectionGUI{
 
         mainPane = new VBox();
 
-        // Contexte pour récupérer la Liste des conversations liées au compte
-        // TODO : Contexte qui récupère les logs & le compte
-
+        context = (AffichageConvoContext) context;
         // TextArea Messagerie
         TextArea textsMessagerie = new TextArea();
-        // TODO : Pour chaque message dans le log de la conversation faire:
-        // textsMessagerie.setText(TEXT A AFFICHER+"\n");
+        for (String mess : ((AffichageConvoContext) context).getConversation().getLogs()) {
+             textsMessagerie.setText(mess+"\n");
+
+        }
         textsMessagerie.setStyle("-fx-font-size: 12 px");
 
         // Textfield Entrer Message
@@ -289,8 +289,8 @@ public class connectionGUI extends Application implements IconnectionGUI{
         Image imageEnvoieMessage = new Image(getClass().getResourceAsStream("envoieMessage.png"));
         envoieMessageButton.setGraphic(new ImageView(imageEnvoieMessage));
         envoieMessageButton.setOnAction(actionevent -> {
-            // TODO : Ecrire dans le .txt le nouveau message
-            // textsMessagerie.setText(ECRIRE NOUVEAU MESSAGE ICI);
+            String message = entrerMessage.getText();
+            // todo : context mp uypload
         });
 
         //HBox zone écriture message
