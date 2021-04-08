@@ -8,12 +8,12 @@ import Outils.*;
 import java.util.ArrayList;
 
 
-public class ProtocoleLoginClient extends ProtocoleDemarrage implements IProtocole {
+public class ProtocoleLoginClient implements IProtocole {
 
     private Tools tools = new Tools();
 
     @Override
-    public String execute(IContext context) {
+    public String execute(IContext context, ProtocoleDemarrage protocoleDemarrage) {
         System.out.println("[ProtLoginClient] executing...");
         LoginContext loginContext = (LoginContext) context;
 
@@ -29,14 +29,19 @@ public class ProtocoleLoginClient extends ProtocoleDemarrage implements IProtoco
                 outPut = "Mot de passe incorrect";
             }
             else {
-                ArrayList<String> convos = getUserConvo(userID);
+                ArrayList<String> convos = protocoleDemarrage.getUserConvo(userID);
+                System.out.println("[ProtLoginClient] convos" + convos);
                 ArrayList<Conversation> conversations = new ArrayList<Conversation>();
-//                for (String filePath : convos) {
-//                    Conversation conversation = loadConversation(filePath);
-//                    conversations.add(conversation);
-//                }
+
+                for (String filePath : convos) {
+                    Conversation conversation = protocoleDemarrage.loadConversation(filePath);
+                    conversations.add(conversation);
+                }
+                System.out.println("[ProtLoginClient] conversations" + conversations);
+                System.out.println("[ProtLoginClient] listConv" + protocoleDemarrage.getLoadedConservations());
+
                 Compte compte = new Compte(userID, conversations);
-                loggedAccounts.add(compte);
+                protocoleDemarrage.loggedAccounts.add(compte);
 
                 outPut = "Connexion validee";
             }

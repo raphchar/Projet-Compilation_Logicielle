@@ -1,15 +1,17 @@
 package Protocoles;
 
-import Contexts.IContext;
 import Outils.Compte;
 import Outils.Conversation;
 import Outils.Tools;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ProtocoleDemarrage implements IProtocole {
+public class ProtocoleDemarrage {
     Tools tools = new Tools();
     String convoPath = "src/Conversations/";
 
@@ -50,16 +52,15 @@ public class ProtocoleDemarrage implements IProtocole {
         }
     }
 
-    @Override
-    public String execute(IContext context) {
-        return null;
-    }
-
     public HashMap<String, ArrayList<String>> getConversationsOfUsers() {
         return ConversationsOfUsers;
     }
 
-        // TODO : si nouvelle convo ??? cf execute imo
+    public ArrayList<Conversation> getLoadedConservations() {
+        return loadedConservations;
+    }
+
+    // TODO : si nouvelle convo ??? cf execute imo
     public void setConversationsOfUsers(HashMap<String, ArrayList<String>> conversationsOfUsers) {
         ConversationsOfUsers = conversationsOfUsers;
     }

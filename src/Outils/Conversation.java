@@ -1,5 +1,7 @@
 package Outils;
 
+import java.util.Arrays;
+
 public class Conversation {
     private String logPath;
     private String name;
@@ -13,6 +15,9 @@ public class Conversation {
         this.id = Integer.parseInt(fileName.substring("src/Conversation/".length()+1, fileName.length()-4));
     }
 
+    public String toString () {
+        return "nomConvo : " + name + "users : "+ Arrays.toString(users) + "id : " + id;
+    }
     public String getLogPath() {
         return logPath;
     }

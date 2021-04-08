@@ -95,7 +95,6 @@ public class connectionGUI extends Application implements IconnectionGUI{
                 if (etat.equals("Connexion validee")){
                     System.out.println("La connection s'est bien déroulée");
                     // TODO : Création de la nouvelle fenêtre IHM de discussion
-//                    primaryStage.close();
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();

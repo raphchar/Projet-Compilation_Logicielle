@@ -3,10 +3,10 @@ package Protocoles;
 import Contexts.IContext;
 import Contexts.QuitterContext;
 
-public class ProtocoleQuitter extends ProtocoleDemarrage implements IProtocole {
+public class ProtocoleQuitter implements IProtocole {
 
     @Override
-    public String execute(IContext context) {
+    public String execute(IContext context, ProtocoleDemarrage protocoleDemarrage) {
         System.out.println("[ProtQuitter] executing...");
         QuitterContext quitterContext = (QuitterContext) context;
 

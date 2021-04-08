@@ -4,12 +4,12 @@ import Contexts.CreationCompteContext;
 import Contexts.IContext;
 import Outils.Tools;
 
-public class ProtocoleCreationCompte extends ProtocoleDemarrage implements IProtocole {
+public class ProtocoleCreationCompte implements IProtocole {
 
     private Tools tools = new Tools();
 
     @Override
-    public String execute(IContext context) {
+    public String execute(IContext context, ProtocoleDemarrage protocoleDemarrage) {
         System.out.println("[ProtCreationCompte] executing...");
         CreationCompteContext creationCompteContext = (CreationCompteContext) context;
 

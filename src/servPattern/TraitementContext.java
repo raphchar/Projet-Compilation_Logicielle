@@ -10,18 +10,13 @@ import java.net.Socket;
  * TraitementContext vient lire et écrire sur les socket du client, transmises par ServeurTCP
  * En interprétant la première lettre du message entrant, TraitementContext sait quel protocole il doit appeller
  */
-class TraitementContext extends Thread {
+class TraitementContext extends ServeurTCP {
 
 	private final Socket clientSocket;
-	private ServeurTCP monServeurTCP;
-	private ProtocoleDemarrage demarrage;
 
-	public TraitementContext(Socket uneSocket, ServeurTCP unServeur, ProtocoleDemarrage protocoleDemarrage) {
-		super("ServeurThread");
+	public TraitementContext(Socket uneSocket) {
+		super(0);
 		clientSocket = uneSocket;
-		monServeurTCP = unServeur;
-		this.demarrage = protocoleDemarrage;
-
 	}
 
 	public void run() {
@@ -65,7 +60,7 @@ class TraitementContext extends Thread {
 					protocole = new ProtocoleQuitter();
 				}
 
-				outPutRes = protocole.execute(context);
+				outPutRes = protocole.execute(context, getProtocoleDemarrage());
 				context.setEtat(outPutRes);
 				objectOutputStream.writeObject(context);
 
