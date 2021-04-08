@@ -1,20 +1,30 @@
 package Contexts;
 
+import Outils.Compte;
 import Outils.Conversation;
 
 public class NouvelleConvoContext implements IContext{
     public String etat;
     public int protocole = 4;
     private String nameConvo;
-    private String[] users;
+    private String userRaw;
     private String message;
+    private Compte compte;
     private Conversation conversation;
 
+    public Compte getCompte() {
+        return compte;
+    }
 
-    public NouvelleConvoContext(String nameConvo, String[] users, String message) {
+    public void setCompte(Compte compte) {
+        this.compte = compte;
+    }
+
+    public NouvelleConvoContext(String nameConvo, String users, String message, Compte compte) {
         this.nameConvo = nameConvo;
-        this.users = users;
+        this.userRaw = users;
         this.message = message;
+        this.compte = compte;
     }
 
     public String getNameConvo() {
@@ -25,12 +35,12 @@ public class NouvelleConvoContext implements IContext{
         this.nameConvo = nameConvo;
     }
 
-    public String[] getUsers() {
-        return users;
+    public String getUserRaw() {
+        return userRaw;
     }
 
-    public void setUsers(String[] users) {
-        this.users = users;
+    public void setUserRaw(String userRaw) {
+        this.userRaw = userRaw;
     }
 
     public String getMessage() {

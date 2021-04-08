@@ -230,14 +230,24 @@ public class connectionGUI extends Application implements IconnectionGUI{
         nomConversation.setMinSize(250, 40);
 
         TextField pseudoParticipants = new TextField();
-        pseudoParticipants.setPromptText("pseudo1; pseudo2; pseudo3; ...");
+        pseudoParticipants.setPromptText("pseudo1;pseudo2;pseudo3;...");
         pseudoParticipants.setMinSize(250, 40);
 
         Button newConvButton = new Button("Nouvelle Conversation");
         newConvButton.setMinSize(150, 40);
         newConvButton.setTextFill(Color.BLUE);
         newConvButton.setOnAction(actionevent -> {
-            // TODO : coté serveur nouvelle convo
+            String nomConvo = nomConversation.getText();
+            String users = pseudoParticipants.getText();
+            String mess = newConvButton.getText();
+
+            NouvelleConvoContext context2 = new NouvelleConvoContext(nomConvo, users, mess, loginContext.compte);
+            try {
+                context2 = (NouvelleConvoContext) monClientTCP.transmettreContext(context2);
+                conversation(context2);
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         });
 
         // Boutons Conversations
@@ -249,7 +259,8 @@ public class connectionGUI extends Application implements IconnectionGUI{
                 AffichageConvoContext context1 = new AffichageConvoContext(convo.getName(), loginContext.compte);
                 try {
                     context1 = (AffichageConvoContext) monClientTCP.transmettreContext(context1);
-                    conversation(context1);
+                    AffichageConvoContext context2 = new AffichageConvoContext(context1.getConversation().getName(), loginContext.compte);
+                    conversation(context2);
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
