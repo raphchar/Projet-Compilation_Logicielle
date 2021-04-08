@@ -244,7 +244,9 @@ public class connectionGUI extends Application implements IconnectionGUI{
             NouvelleConvoContext context2 = new NouvelleConvoContext(nomConvo, users, mess, loginContext.compte);
             try {
                 context2 = (NouvelleConvoContext) monClientTCP.transmettreContext(context2);
-                conversation(context2);
+                AffichageConvoContext context3 = new AffichageConvoContext(context2.getConversation().getName(), loginContext.compte);
+                conversation(context3);
+
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -259,8 +261,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
                 AffichageConvoContext context1 = new AffichageConvoContext(convo.getName(), loginContext.compte);
                 try {
                     context1 = (AffichageConvoContext) monClientTCP.transmettreContext(context1);
-                    AffichageConvoContext context2 = new AffichageConvoContext(context1.getConversation().getName(), loginContext.compte);
-                    conversation(context2);
+                    conversation(context1);
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
