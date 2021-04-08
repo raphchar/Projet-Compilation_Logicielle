@@ -26,6 +26,8 @@ public class connectionGUI extends Application implements IconnectionGUI{
     public VBox mainPane;
     public Stage primaryStage;
 
+    public LoginContext loginContext;
+
     // Données pour la connection
     public String unNomServeur = "localhost";
     public int unNumero = 6666;
@@ -212,6 +214,8 @@ public class connectionGUI extends Application implements IconnectionGUI{
         // Contexte pour récupérer la Liste des conversations liées au compte
         LoginContext loginContext = (LoginContext) context;
 
+        this.loginContext = loginContext;
+
         // Text
         Text text = new Text(10,30,"Sélectionner une conversation");
         text.setFont(new Font(15));
@@ -278,6 +282,22 @@ public class connectionGUI extends Application implements IconnectionGUI{
         mainPane = new VBox();
 
         context = (AffichageConvoContext) context;
+
+        // Boutton retour à la liste des conversations
+        Button bouttonRetour = new Button("Retour");
+        bouttonRetour.setMinSize(150, 25);
+        bouttonRetour.setOnAction(actionEvent -> {
+            try {
+                listConversations(this.loginContext);
+            } catch (Exception e) {e.printStackTrace();}
+        });
+
+        VBox areaRetour = new VBox();
+        areaRetour.getChildren().addAll(bouttonRetour);
+        VBox.setMargin(areaRetour, new Insets(10,10,10,10));
+        //areaButton.setSpacing(30);
+        areaRetour.setAlignment(Pos.TOP_RIGHT);
+
         // TextArea Messagerie
         TextArea textsMessagerie = new TextArea();
         for (String mess : ((AffichageConvoContext) context).getConversation().getLogs()) {
@@ -313,7 +333,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
         //Creating main Pane
         mainPane.setAlignment(Pos.CENTER);
         //mainPane.setSpacing(30);
-        mainPane.getChildren().addAll(textsMessagerie,areaMessagerie);
+        mainPane.getChildren().addAll(areaRetour,textsMessagerie,areaMessagerie);
         Scene myScene = new Scene(mainPane, 600, 600);
         primaryStage.setScene(myScene);
         primaryStage.show();
