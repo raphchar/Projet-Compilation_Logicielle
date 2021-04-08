@@ -3,6 +3,7 @@ package GUI;
 import Contexts.CreationCompteContext;
 import Contexts.IContext;
 import Contexts.LoginContext;
+import Contexts.QuitterContext;
 import connexion.ClientTCP;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -42,8 +43,14 @@ public class connectionGUI extends Application implements IconnectionGUI{
             monClientTCP.connecterAuServeur();
 
             this.primaryStage.setOnCloseRequest(event -> {
-                System.exit(0);}
-                );
+                        QuitterContext quitterContext = new QuitterContext();
+                        try {
+                            monClientTCP.transmettreContext(quitterContext);
+                        } catch (IOException | ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        System.exit(0);});
+
             Connection();
         } catch (Exception e ) {e.printStackTrace();}
     }

@@ -61,6 +61,7 @@ class TraitementContext extends Thread {
 				// 10 = Stop
 				else if (protocoleNumber == 10) {
 					listening = false;
+					protocole = new ProtocoleQuitter();
 				}
 
 				outPutRes = protocole.execute(context);
