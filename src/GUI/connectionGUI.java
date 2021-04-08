@@ -10,12 +10,13 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -207,34 +208,59 @@ public class connectionGUI extends Application implements IconnectionGUI{
         // IHM n°2 après connexion - Présentation des conversations sélectionnables
 
         mainPane = new VBox();
+
         // Contexte pour récupérer la Liste des conversations liées au compte
         LoginContext loginContext = (LoginContext) context;
 
+        // Text
+        Text text = new Text(10,30,"Sélectionner une conversation");
+        text.setFont(new Font(15));
+        text.setFill(Color.BLUE);
+
+        Pane paneText = new Pane();
+        paneText.getChildren().setAll(text);
+
+        // Bouton nouvelle conversation
+        Button newConvButton = new Button("Nouvelle Conversation");
+        newConvButton.setMinSize(150, 40);
+        newConvButton.setTextFill(Color.BLUE);
+        newConvButton.setOnAction(actionevent -> {
+            // TODO : Créer une nouvelle conversation
+        });
+
+        // Boutons Conversations
         ArrayList<Button> buttonList = new ArrayList<Button>();
         for (Conversation convo : loginContext.compte.getListConvos()) {
             Button newButtonConvo = new Button(convo.getName());
             newButtonConvo.setMinSize(150, 40);
             newButtonConvo.setOnAction(actionevent -> {
+                // TODO : Lier les conversations aux boutons
                 // Lancer la conversation correspondante
                 // Créer un contexte pour demander contenu conversation
             });
             buttonList.add(newButtonConvo);
         }
+        VBox areaNewConvButton = new VBox();
+        areaNewConvButton.getChildren().addAll(newConvButton);
+        VBox.setMargin(areaNewConvButton, new Insets(10,10,10,10));
+        areaNewConvButton.setAlignment(Pos.TOP_LEFT);
 
         VBox areaButton = new VBox();
         areaButton.getChildren().addAll(buttonList);
         VBox.setMargin(areaButton, new Insets(10,10,10,10));
-        areaButton.setSpacing(30);
-        areaButton.setAlignment(Pos.CENTER_LEFT);
+        //areaButton.setSpacing(30);
+        areaButton.setAlignment(Pos.TOP_LEFT);
 
         //Creating main Pane
-        mainPane.setAlignment(Pos.CENTER);
-        mainPane.setSpacing(30);
-        mainPane.getChildren().addAll(areaButton);
+        mainPane.setAlignment(Pos.TOP_LEFT);
+        //mainPane.setSpacing(30);
+        mainPane.getChildren().addAll(paneText,areaNewConvButton,areaButton);
         Scene myScene = new Scene(mainPane, 300, 400);
         primaryStage.setScene(myScene);
         primaryStage.show();
     }
+
+
 
     public static void main(String[] args) {
         launch(args);
