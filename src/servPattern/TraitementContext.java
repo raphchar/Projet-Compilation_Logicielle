@@ -54,6 +54,11 @@ class TraitementContext extends ServeurTCP {
 				else if (protocoleNumber == 3) {
 					protocole = new ProtocoleAffichConvo();
 				}
+
+				// 4 = nouvelle convo
+				else if (protocoleNumber == 4) {
+					protocole = new ProtocoleNouvelleConvo();
+				}
 				// 10 = Stop
 				else if (protocoleNumber == 10) {
 					listening = false;

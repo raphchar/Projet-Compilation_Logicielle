@@ -225,7 +225,8 @@ public class connectionGUI extends Application implements IconnectionGUI{
         newConvButton.setMinSize(150, 40);
         newConvButton.setTextFill(Color.BLUE);
         newConvButton.setOnAction(actionevent -> {
-            //TODO : coté serveur nouvelle convo
+            // TODO on a besoiin des fields de nom de convo, users et message de début
+            // TODO : coté serveur nouvelle convo
         });
 
         // Boutons Conversations
