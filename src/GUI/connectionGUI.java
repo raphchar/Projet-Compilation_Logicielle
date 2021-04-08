@@ -220,12 +220,19 @@ public class connectionGUI extends Application implements IconnectionGUI{
         Pane paneText = new Pane();
         paneText.getChildren().setAll(text);
 
-        // Bouton nouvelle conversation
+        // Text & Bouton nouvelle conversation
+        TextField nomConversation = new TextField();
+        nomConversation.setPromptText("Ecrire le nom de la conversation");
+        nomConversation.setMinSize(250, 40);
+
+        TextField pseudoParticipants = new TextField();
+        pseudoParticipants.setPromptText("pseudo1; pseudo2; pseudo3; ...");
+        pseudoParticipants.setMinSize(250, 40);
+
         Button newConvButton = new Button("Nouvelle Conversation");
         newConvButton.setMinSize(150, 40);
         newConvButton.setTextFill(Color.BLUE);
         newConvButton.setOnAction(actionevent -> {
-            // TODO on a besoiin des fields de nom de convo, users et message de début
             // TODO : coté serveur nouvelle convo
         });
 
@@ -246,7 +253,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
             buttonList.add(newButtonConvo);
         }
         VBox areaNewConvButton = new VBox();
-        areaNewConvButton.getChildren().addAll(newConvButton);
+        areaNewConvButton.getChildren().addAll(nomConversation, pseudoParticipants, newConvButton);
         VBox.setMargin(areaNewConvButton, new Insets(10,10,10,10));
         areaNewConvButton.setAlignment(Pos.TOP_LEFT);
 
