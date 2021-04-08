@@ -10,6 +10,7 @@ public class AffichageConvoContext implements IContext, Serializable {
     public int protocole = 3;
     private String nomConvo;
     private Compte compte;
+    private String userRaw;
     private Conversation conversation;
 
     public AffichageConvoContext(String nomConvo, Compte compte) {
@@ -23,7 +24,13 @@ public class AffichageConvoContext implements IContext, Serializable {
                 "nomConvo='" + nomConvo + '\'' +
                 '}';
     }
+    public String getUserRaw() {
+        return userRaw;
+    }
 
+    public void setUserRaw(String userRaw) {
+        this.userRaw = userRaw;
+    }
     public Compte getCompte() {
         return compte;
     }

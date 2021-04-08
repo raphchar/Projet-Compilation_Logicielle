@@ -18,7 +18,7 @@ public class ProtocoleDemarrage {
     public HashMap<String,ArrayList<String>> ConversationsOfUsers = new HashMap<String, ArrayList<String>>();
     public ArrayList<Conversation> loadedConservations = new ArrayList<Conversation>();
     public ArrayList<Compte> loggedAccounts = new ArrayList<Compte>();
-
+    public int nbConvos = countConvos();
 
     public ProtocoleDemarrage() {
 
@@ -100,5 +100,16 @@ public class ProtocoleDemarrage {
 
     public void ajoutCompte(Compte compte) {
         loggedAccounts.add(compte);
+    }
+
+    public int countConvos() {
+        File dir = new File(this.convoPath);
+        File[] fileList = dir.listFiles();
+        int cpt = 0;
+
+        for (File file : fileList) {
+            cpt++;
+        }
+        return cpt;
     }
 }
