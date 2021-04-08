@@ -1,6 +1,7 @@
 package GUI;
 
 import Contexts.CreationCompteContext;
+import Contexts.IContext;
 import Contexts.LoginContext;
 import connexion.ClientTCP;
 import javafx.application.Application;
@@ -16,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.ObjectInput;
 
 public class connectionGUI extends Application implements IconnectionGUI{
     public VBox mainPane;
@@ -81,7 +83,13 @@ public class connectionGUI extends Application implements IconnectionGUI{
             String pass = motDePasseTextField.getText();
             LoginContext myLoginContext = new LoginContext(login, pass);
             try {
-                monClientTCP.transmettreContext(myLoginContext);
+                String etat = monClientTCP.transmettreContext(myLoginContext);
+
+                if (etat.equals("Connexion validee")){
+                    System.out.println("La connection s'est bien déroulée");
+                    // TODO : Création de la nouvelle fenêtre IHM de discussion
+                    primaryStage.close();
+                }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

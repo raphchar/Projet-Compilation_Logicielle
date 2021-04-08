@@ -54,8 +54,9 @@ class TraitementContext extends Thread {
 				protocole = new ProtocoleMessagePrive();
 			}
 
-			System.out.println(demarrage.getConversationsOfUsers());
+			//System.out.println(demarrage.getConversationsOfUsers());
 
+			//assert protocole != null;
 			outPutRes = protocole.execute(context);
 			context.setEtat(outPutRes);
 			objectOutputStream.writeObject(context);

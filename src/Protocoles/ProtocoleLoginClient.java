@@ -31,11 +31,10 @@ public class ProtocoleLoginClient extends ProtocoleDemarrage implements IProtoco
             else {
                 ArrayList<String> convos = getUserConvo(userID);
                 ArrayList<Conversation> conversations = new ArrayList<Conversation>();
-
-                for (String filePath : convos) {
-                    Conversation conversation = loadConversation(filePath);
-                    conversations.add(conversation);
-                }
+//                for (String filePath : convos) {
+//                    Conversation conversation = loadConversation(filePath);
+//                    conversations.add(conversation);
+//                }
                 Compte compte = new Compte(userID, conversations);
                 loggedAccounts.add(compte);
 
