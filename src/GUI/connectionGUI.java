@@ -27,6 +27,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
     public Stage primaryStage;
 
     public LoginContext loginContext;
+    public AffichageConvoContext convoContext;
 
     // Données pour la connection
     public String unNomServeur = "localhost";
@@ -99,6 +100,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
                 String etat = context.getEtat();
 
                 if (etat.equals("Connexion validee")){
+                    this.loginContext = (LoginContext) context;
                     listConversations(context);
                 }
             } catch (IOException | ClassNotFoundException e) {
@@ -180,8 +182,9 @@ public class connectionGUI extends Application implements IconnectionGUI{
             String verifPass = verificationMotdePasseTextField.getText();
             CreationCompteContext compteContext = new CreationCompteContext(login, pass, verifPass);
             try {
-                monClientTCP.transmettreContext(compteContext);
-            } catch (IOException | ClassNotFoundException e) {
+                IContext context = monClientTCP.transmettreContext(compteContext);
+                Connection();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
@@ -213,8 +216,6 @@ public class connectionGUI extends Application implements IconnectionGUI{
 
         // Contexte pour récupérer la Liste des conversations liées au compte
         LoginContext loginContext = (LoginContext) context;
-
-        this.loginContext = loginContext;
 
         // Text
         Text text = new Text(10,30,"Sélectionner une conversation");
@@ -261,6 +262,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
                 AffichageConvoContext context1 = new AffichageConvoContext(convo.getName(), loginContext.compte);
                 try {
                     context1 = (AffichageConvoContext) monClientTCP.transmettreContext(context1);
+                    this.convoContext = context1;
                     conversation(context1);
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
@@ -333,7 +335,12 @@ public class connectionGUI extends Application implements IconnectionGUI{
         envoieMessageButton.setGraphic(imageView);
         envoieMessageButton.setOnAction(actionevent -> {
             String message = entrerMessage.getText();
-            // todo : context mp uypload
+            MessagePriveContext messagePriveContext = new MessagePriveContext(message, this.convoContext.getConversation(), this.loginContext.compte);
+            try {
+                monClientTCP.transmettreContext(messagePriveContext);
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         });
 
         //HBox zone écriture message

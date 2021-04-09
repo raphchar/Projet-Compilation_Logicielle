@@ -2,11 +2,7 @@ package Protocoles;
 
 import Contexts.CreationCompteContext;
 import Contexts.IContext;
-import Outils.Compte;
-import Outils.Conversation;
 import Outils.Tools;
-
-import java.util.ArrayList;
 
 public class ProtocoleCreationCompte implements IProtocole {
 
@@ -31,11 +27,7 @@ public class ProtocoleCreationCompte implements IProtocole {
             }
             else {
                 tools.addUser(userID,userPW);
-                Compte compte = new Compte(userID, new ArrayList<Conversation>());
-                protocoleDemarrage.ajoutCompte(compte);
-
                 outPut = "Compte cree";
-                creationCompteContext.compte = compte;
             }
         } catch (Exception e) {
             e.printStackTrace();

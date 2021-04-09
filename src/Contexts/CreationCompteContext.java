@@ -1,7 +1,5 @@
 package Contexts;
 
-import Outils.Compte;
-
 import java.io.Serializable;
 
 public class CreationCompteContext implements IContext, Serializable {
@@ -10,7 +8,6 @@ public class CreationCompteContext implements IContext, Serializable {
     private String verifPw = "";
     public final int protocole = 2;
     public String etat;
-    public Compte compte;
 
     public CreationCompteContext(String id, String pw, String verifPw) {
         this.id = id;

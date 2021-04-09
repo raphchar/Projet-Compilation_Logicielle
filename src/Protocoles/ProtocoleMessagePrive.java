@@ -7,14 +7,13 @@ public class ProtocoleMessagePrive implements IProtocole{
     @Override
     public String execute(IContext context, ProtocoleDemarrage protocoleDemarrage) {
         System.out.println("[ProtMessPrive] executing...");
-        MessagePriveContext messagePriveContext = (MessagePriveContext) context;
+        MessagePriveContext context1 = (MessagePriveContext) context;
+        String outPut = "message envoyé";
 
-        String outPut = null;
-        String message = messagePriveContext.getMessage();
-        String sender = messagePriveContext.getSender();
-        String receiver = messagePriveContext.getReceiver();
+        String name = context1.getCompte().getUserID();
+        String mess = context1.getMessage();
 
-
-        return null;
+        context1.getConversation().writeLogs(mess, name);
+        return outPut;
     }
 }

@@ -15,15 +15,15 @@ public class Conversation implements Serializable {
         this.users = users;
         this.name = name;
         this.logPath = fileName;
-        this.id = Integer.parseInt(fileName.substring("src/Conversation/".length()+1, fileName.length()-4));
+        this.id = Integer.parseInt(fileName.substring("src/Conversation/".length() + 1, fileName.length() - 4));
     }
 
     public ArrayList<String> getLogs() {
         return logs;
     }
 
-    public String toString () {
-        return "nomConvo : " + name + "users : "+ Arrays.toString(users) + "id : " + id;
+    public String toString() {
+        return "nomConvo : " + name + "users : " + Arrays.toString(users) + "id : " + id;
     }
 
     public String getLogPath() {
@@ -77,8 +77,20 @@ public class Conversation implements Serializable {
 
         String line;
 
-        while ( (line = f.readLine()) != null) {
+        while ((line = f.readLine()) != null) {
             logs.add(line);
         }
+    }
+
+    public void writeLogs(String message, String nom) {
+        File file = new File(logPath);
+        FileWriter fr = null;
+        try {
+            fr = new FileWriter(file, true);
+            fr.write(nom + " : " + message + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.logs.add(nom + " : " + message + "\n");
     }
 }

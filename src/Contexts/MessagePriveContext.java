@@ -1,52 +1,34 @@
 package Contexts;
 
+import Outils.Compte;
+import Outils.Conversation;
+
 import java.io.Serializable;
 
 public class MessagePriveContext implements IContext, Serializable {
     private String message;
-    private String sender = "";
-    private String receiver = "";
-    public final int protocole = 4;
+    private Conversation conversation;
+    private Compte compte;
+    public final int protocole = 5;
     public String etat;
 
-
-    public MessagePriveContext(String message, String sender, String receiver) {
+    public MessagePriveContext(String message, Conversation conversation, Compte compte) {
         this.message = message;
-        this.sender = sender;
-        this.receiver = receiver;
+        this.conversation = conversation;
+        this.compte = compte;
     }
 
-    @Override
-    public String toString() {
-        return "P{" +
-                "message='" + message + '\'' +
-                ", sender='" + sender + '\'' +
-                ", receiver='" + receiver + '\'' +
-                '}';
-    }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public Conversation getConversation() {
+        return conversation;
     }
 
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
-
-    public String getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
+    public Compte getCompte() {
+        return compte;
     }
 
     @Override
