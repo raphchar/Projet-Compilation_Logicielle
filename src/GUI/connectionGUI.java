@@ -297,20 +297,20 @@ public class connectionGUI extends Application implements IconnectionGUI{
 
         context = (AffichageConvoContext) context;
 
-//        // Boutton retour à la liste des conversations
-//        Button bouttonRetour = new Button("Retour");
-//        bouttonRetour.setMinSize(150, 25);
-//        bouttonRetour.setOnAction(actionEvent -> {
-//            try {
-//                listConversations(this.loginContext);
-//            } catch (Exception e) {e.printStackTrace();}
-//        });
-//
-//        VBox areaRetour = new VBox();
-//        areaRetour.getChildren().addAll(bouttonRetour);
-//        VBox.setMargin(areaRetour, new Insets(10,10,10,10));
-//        //areaButton.setSpacing(30);
-//        areaRetour.setAlignment(Pos.TOP_RIGHT);
+        // Boutton retour à la liste des conversations
+        Button bouttonRetour = new Button("Retour");
+        bouttonRetour.setMinSize(150, 25);
+        bouttonRetour.setOnAction(actionEvent -> {
+            try {
+                listConversations(this.loginContext);
+            } catch (Exception e) {e.printStackTrace();}
+        });
+
+        VBox areaRetour = new VBox();
+        areaRetour.getChildren().addAll(bouttonRetour);
+        VBox.setMargin(areaRetour, new Insets(10,10,10,10));
+        //areaButton.setSpacing(30);
+        areaRetour.setAlignment(Pos.TOP_RIGHT);
 
         // TextArea Messagerie
         String textMessagerie = "";
@@ -337,7 +337,7 @@ public class connectionGUI extends Application implements IconnectionGUI{
             String message = entrerMessage.getText();
             MessagePriveContext messagePriveContext = new MessagePriveContext(message, this.convoContext.getConversation(), this.loginContext.compte);
             try {
-                monClientTCP.transmettreContext(messagePriveContext);
+                IContext context1 = monClientTCP.transmettreContext(messagePriveContext);
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -355,9 +355,9 @@ public class connectionGUI extends Application implements IconnectionGUI{
         //mainPane.setSpacing(30);
 
         // POUR AJOUTER LE BOUTON RETOUR :
-        // mainPane.getChildren().addAll(areaRetour,textsMessagerie,areaMessagerie);
+        mainPane.getChildren().addAll(areaRetour,textsMessagerie,areaMessagerie);
 
-        mainPane.getChildren().addAll(textsMessagerie,areaMessagerie);
+//        mainPane.getChildren().addAll(textsMessagerie,areaMessagerie);
         Scene myScene = new Scene(mainPane, 600, 600);
         primaryStage.setScene(myScene);
         primaryStage.show();

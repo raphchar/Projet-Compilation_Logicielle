@@ -12,6 +12,13 @@ public class MessagePriveContext implements IContext, Serializable {
     public final int protocole = 5;
     public String etat;
 
+    @Override
+    public String toString() {
+        return "MessagePriveContext{" +
+                "message='" + message + '\'' +
+                '}';
+    }
+
     public MessagePriveContext(String message, Conversation conversation, Compte compte) {
         this.message = message;
         this.conversation = conversation;

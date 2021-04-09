@@ -84,13 +84,17 @@ public class Conversation implements Serializable {
 
     public void writeLogs(String message, String nom) {
         File file = new File(logPath);
-        FileWriter fr = null;
+        System.out.println("WRITELOGS : logpath = " + logPath + ", message = " + message + ", nom = " + nom);
+        FileWriter fr;
         try {
             fr = new FileWriter(file, true);
-            fr.write(nom + " : " + message + "\n");
+            fr.write("\n" + nom + " : " + message);
+            fr.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         this.logs.add(nom + " : " + message + "\n");
+        System.out.println("WRITELOGS : LOGS = " + logs);
+
     }
 }
