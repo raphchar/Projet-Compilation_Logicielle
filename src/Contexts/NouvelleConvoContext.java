@@ -2,7 +2,9 @@ package Contexts;
 
 import Outils.Compte;
 import Outils.Conversation;
-
+/**
+ * Context envoyé lors d'une requete de création d'une nouvelle conversation
+ */
 public class NouvelleConvoContext implements IContext{
     public String etat;
     public int protocole = 4;

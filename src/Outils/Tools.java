@@ -5,6 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 
+/**
+ * Liste de fonctions diverses servant principalement à l'initialisation du sevreur (données permanantes)
+ */
 public class Tools {
 
     private String filename = "src/servPattern/DatabaseID.txt";

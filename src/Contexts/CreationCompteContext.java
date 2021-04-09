@@ -2,6 +2,9 @@ package Contexts;
 
 import java.io.Serializable;
 
+/**
+ * Context envoyé lors d'une requete de création d'un compte client
+ */
 public class CreationCompteContext implements IContext, Serializable {
     private String id = "";
     private String pw = "";

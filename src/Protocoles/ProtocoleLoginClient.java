@@ -6,7 +6,9 @@ import Contexts.LoginContext;
 import Outils.*;
 
 import java.util.ArrayList;
-
+/**
+ * Protocole de traitement de context de connexion d'un client
+ */
 
 public class ProtocoleLoginClient implements IProtocole {
 

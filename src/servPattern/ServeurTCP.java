@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-
+/**
+ * Classe qui instancie le serveur pour les communications techniques TCP avant de transmettre une session de comm
+ * client/serveur à un traitmentContext une fois une nouvelle connxion reçue
+ */
 public class ServeurTCP extends Thread{
 
 	private static int nbConnexions = 0;

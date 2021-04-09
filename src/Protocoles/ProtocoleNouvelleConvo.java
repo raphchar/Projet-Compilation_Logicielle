@@ -5,7 +5,9 @@ import Contexts.NouvelleConvoContext;
 import Outils.Conversation;
 
 import java.io.File;
-
+/**
+ * Protocole de traitement de context de réception d'un message
+ */
 public class ProtocoleNouvelleConvo implements IProtocole{
     @Override
     public String execute(IContext context, ProtocoleDemarrage protocoleDemarrage) {

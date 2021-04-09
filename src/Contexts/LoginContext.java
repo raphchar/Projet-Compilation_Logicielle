@@ -3,7 +3,9 @@ package Contexts;
 import Outils.Compte;
 
 import java.io.Serializable;
-
+/**
+ * Context envoyé lors d'une requete de connexion
+ */
 public class LoginContext implements IContext, Serializable {
     private String id = "";
     private String pw = "";

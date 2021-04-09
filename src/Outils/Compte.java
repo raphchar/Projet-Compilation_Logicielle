@@ -3,6 +3,9 @@ package Outils;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Cette classe instancie un compte lors d'une connexion, ce qui lui explicite ces conversations
+ */
 public class Compte implements Serializable {
     public String userID;
     private ArrayList<Conversation> listConvos;

@@ -10,7 +10,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/**
+ * Protocole d'initialisation du serveur
+ */
 public class ProtocoleDemarrage {
     Tools tools = new Tools();
     String convoPath = "src/Conversations/";

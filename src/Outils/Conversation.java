@@ -4,6 +4,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Instancie une conversation : son chemin, ses users, ses logs, etc
+ */
+
 public class Conversation implements Serializable {
     private String logPath;
     private String name;

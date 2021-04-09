@@ -4,7 +4,9 @@ import Outils.Compte;
 import Outils.Conversation;
 
 import java.io.Serializable;
-
+/**
+ * Context envoyé lors d'une requete d'envoi de message
+ */
 public class MessagePriveContext implements IContext, Serializable {
     private String message;
     private Conversation conversation;

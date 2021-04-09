@@ -22,6 +22,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * ConnectionGUI : Plusieurs fonctions sont implémentés : chaque fonction correspond à une scene de l'IHM :
+ *  - Connection page de connexion
+ *  - CreationCompte : page de création de compte
+ *  - listConversations : page d'affiche de la liste des conversations accessibles, ainsiu que la possibilité de créer une nouvelle conversation
+ *  - conversation : page d'affichage d'une conversation en particulier
+ */
+
 public class connectionGUI extends Application implements IconnectionGUI{
     public VBox mainPane;
     public Stage primaryStage;

@@ -1,9 +1,16 @@
 package connexion;
 
 import Contexts.IContext;
-
 import java.io.*;
 import java.net.*;
+
+/**
+Ce fichier gère les connexion techniuqes entre un client et le serveur :
+ 	- connecterAuServeur initialise cette connexion
+ 	- deconnecterDuServeur la termine
+ 	- transmettreContext transmet un context au seerveur, se context est donc Serializable
+ La réponse de cette dernière fonction est le même context modifié (avec des données en plus : encapuslation, etat, etc)
+ */
 
 public class ClientTCP {
 

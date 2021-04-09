@@ -5,7 +5,9 @@ import Contexts.IContext;
 import Outils.Conversation;
 
 import java.io.IOException;
-
+/**
+ * Protocole de traitement de context d'affichage d'une conversation
+ */
 public class ProtocoleAffichConvo implements IProtocole{
     @Override
     public String execute(IContext context, ProtocoleDemarrage protocoleDemarrage) {

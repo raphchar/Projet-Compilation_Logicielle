@@ -1,7 +1,9 @@
 package Contexts;
 
 import java.io.Serializable;
-
+/**
+ * Context envoyé lors d'une requete de l'arrêt de la connexion client
+ */
 public class QuitterContext implements IContext, Serializable {
     public final int protole = 10;
     public  String etat;

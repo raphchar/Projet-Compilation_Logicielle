@@ -3,7 +3,9 @@ package Protocoles;
 import Contexts.IContext;
 import Contexts.MessagePriveContext;
 import Outils.Conversation;
-
+/**
+ * Protocole de traitement de context d'envoi de message
+ */
 public class ProtocoleMessagePrive implements IProtocole{
     @Override
     public String execute(IContext context, ProtocoleDemarrage protocoleDemarrage) {

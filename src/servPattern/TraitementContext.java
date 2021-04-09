@@ -8,7 +8,7 @@ import java.net.Socket;
 
 /**
  * TraitementContext vient lire et écrire sur les socket du client, transmises par ServeurTCP
- * En interprétant la première lettre du message entrant, TraitementContext sait quel protocole il doit appeller
+ * En lisant le numéro de protocole à effectuer (lu dans le context reçu), appelle ensuite le protocole adéquat
  */
 class TraitementContext extends ServeurTCP {
 

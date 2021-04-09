@@ -5,6 +5,9 @@ import Outils.Conversation;
 
 import java.io.Serializable;
 
+/**
+ * Ce context est envoyé lors d'une reqête d'afficge d'une conversation en particulier
+ */
 public class AffichageConvoContext implements IContext, Serializable {
     private String etat;
     public int protocole = 3;

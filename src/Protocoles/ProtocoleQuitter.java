@@ -2,7 +2,9 @@ package Protocoles;
 
 import Contexts.IContext;
 import Contexts.QuitterContext;
-
+/**
+ * Protocole de traitement de context d'arrêt de communication
+ */
 public class ProtocoleQuitter implements IProtocole {
 
     @Override
